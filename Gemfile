@@ -41,6 +41,10 @@ gem 'simple_form'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 platform :ruby do
+  group :production do
+    # Use unicorn as the app server
+    gem 'unicorn'
+  end
   group :development do
     gem 'better_errors'
     gem 'binding_of_caller'
@@ -73,7 +77,4 @@ group :development, :test do
   gem 'awesome_print'
 end
 
-group :production do
-  # Use unicorn as the app server
-  gem 'unicorn'
-end
+
