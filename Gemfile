@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
+gem 'pg'
+gem 'activerecord-postgis-adapter'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -38,33 +40,40 @@ gem 'simple_form'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
+platform :ruby do
+  group :development do
+    gem 'better_errors'
+    gem 'binding_of_caller'
+  end
+
+  group :development, :test do
+    gem 'debugger'
+  end
+
+  group :test do
+    gem 'guard-spork'
+    gem 'guard-rspec'
+    gem 'spork', '~> 1.0rc'
+    gem 'rb-fsevent'
+    gem 'capybara'
+    gem 'factory_girl_rails'
+    # Use database_cleaner if you'd like to run full webkit specs
+    # gem 'database_cleaner'
+    # gem 'capybara-webkit', '0.7.2'
+  end
+end
+
 group :development do
   gem 'sextant'
-  gem 'better_errors'
-  gem 'binding_of_caller'
 end
 
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'awesome_print'
-  gem 'debugger'
-end
-
-group :test do
-  gem 'guard-spork'
-  gem 'guard-rspec'
-  gem 'spork', '~> 1.0rc'
-  gem 'rb-fsevent'
-  gem 'capybara'
-  gem 'factory_girl_rails'
-  # Use database_cleaner if you'd like to run full webkit specs
-  # gem 'database_cleaner'
-  # gem 'capybara-webkit', '0.7.2'
 end
 
 group :production do
   # Use unicorn as the app server
   gem 'unicorn'
 end
-
