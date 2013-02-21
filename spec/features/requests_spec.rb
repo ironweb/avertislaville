@@ -11,12 +11,10 @@ describe "RequestsController", :type => :feature do
     context "with a valid service" do
       before(:each) do
         RequestsController.any_instance.stub(:service) do
-          service = Open311::Service.new(min_sample_service)
-          service.attrs = [
-            Open311::Attribute.new(one_attribute.update("code" => "desc", "type" => "textarea")),
-            Open311::Attribute.new(one_attribute.update("code" => "phone", "type" => "text")),
-          ]
-          service
+          service = FactoryGirl.build(:open311_service, :attrs => [
+            FactoryGirl.build(:open311_attribute, :code => "desc", :datatype => "textarea"),
+            FactoryGirl.build(:open311_attribute, :code => "phone", :datatype => "text")
+          ])
         end
       end
 
