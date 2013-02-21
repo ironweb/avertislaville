@@ -5,9 +5,6 @@ var zoomData=12;
 var geocoder;
 
 function updateCoordinate(){
-	$('#lat').html("latitude = "+latitudeData);
-	$('#lon').html("longitude = "+longitudeData);
-
 	var latLngTemp= new google.maps.LatLng(latitudeData,longitudeData);
 	geocoder.geocode({'latLng':latLngTemp}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
@@ -23,7 +20,7 @@ function updateCoordinate(){
 }
 
 function initMap(){
-	if($('#map_canvas').length == 0) return
+	if($('#map_canvas').length === 0) return;
 	$("#map_canvas").goMap({
 		maptype: 'ROADMAP',
 		mapTypeControl: false,
