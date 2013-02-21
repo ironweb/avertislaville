@@ -61,6 +61,7 @@ platform :ruby do
   end
 
   group :test do
+    gem 'launchy'
     gem 'guard-spork'
     gem 'guard-rspec'
     gem 'spork'

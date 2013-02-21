@@ -9,13 +9,7 @@ module RailsOpen311
   end
 
   def self.load_all_services!
-    api_config = load_config
-
-    url = api_config['url']
-    jurisdiction_id = api_config['jurisdiction_id']
-    api_key = api_config['apikey']
-
-    api_wrapper = Open311::ApiWrapper.from_url(url, api_key, jurisdiction_id)
+    api_wrapper = self.api_wrapper
     services = api_wrapper.services_with_attrs
 
     Rails.cache.write CACHE_KEY, services
@@ -29,6 +23,15 @@ module RailsOpen311
     api_config = load_config
     grouped_services = Hash[all_services.map { |s| [s.code, s] }]
     return api_config['services'].map { |sc| grouped_services[sc] }
+  end
+
+  def self.api_wrapper
+    api_config = load_config
+    url = api_config['url']
+    jurisdiction_id = api_config['jurisdiction_id']
+    api_key = api_config['apikey']
+
+    Open311::ApiWrapper.from_url(url, api_key, jurisdiction_id)
   end
 
 end

@@ -12,3 +12,5 @@ fr:
     phone: 'Téléphone'
     password: 'Mot de passe'
     register: 'Enregistrer'
+    submit: 'Envoyer'
+    success: 'Problème signalé'
