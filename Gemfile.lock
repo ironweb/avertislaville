@@ -271,7 +271,7 @@ DEPENDENCIES
   sextant
   simple_form
   sorted
-  spork (~> 1.0rc)
+  spork
   sqlite3
   uglifier (>= 1.0.3)
   unicorn

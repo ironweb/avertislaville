@@ -60,7 +60,7 @@ platform :ruby do
   group :test do
     gem 'guard-spork'
     gem 'guard-rspec'
-    gem 'spork', '~> 1.0rc'
+    gem 'spork'
     gem 'rb-fsevent'
     gem 'capybara'
     gem 'factory_girl_rails'
@@ -80,4 +80,7 @@ group :development, :test do
   gem 'awesome_print'
 end
 
-
+platforms :mswin, :mingw do
+  gem 'spork'
+  gem 'factory_girl_rails'
+end
