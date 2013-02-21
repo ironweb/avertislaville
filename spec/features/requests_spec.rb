@@ -4,7 +4,6 @@ describe "RequestsController", :type => :feature do
   describe "GET new" do
     context "with invalid service" do
       it "raises routing error" do
-        visit '/'
         expect { visit request_path('one_service') }.to raise_exception(ActionController::RoutingError)
       end
     end
