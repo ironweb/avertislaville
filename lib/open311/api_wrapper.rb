@@ -2,7 +2,6 @@ require 'rest-client'
 require 'json'
 require 'open311/service'
 require 'open311/attribute'
-require 'open311/response'
 
 module Open311
 
@@ -76,7 +75,7 @@ module Open311
       params['api_key'] = @api_key
       raw_response = @resource['/requests.json'].post(params)
       json_response = JSON.parse(raw_response)
-      return Open311::Response.new(json_response)
+      return Response.new(json_response)
     end
 
   end
