@@ -14,6 +14,8 @@ class RequestsController < ApplicationController
   end
 
   def service
-    @service ||= nil # TODO
+    @service ||= RailsOpen311.filtered_services.find do |service|
+      service.code == params[:service]
+    end
   end
 end

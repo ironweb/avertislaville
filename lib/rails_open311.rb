@@ -1,3 +1,4 @@
+require_dependency 'open311'
 module RailsOpen311
 
   CONFIG_PATH = "#{Rails.root}/config/open311.yml"
@@ -22,7 +23,7 @@ module RailsOpen311
   end
 
   def self.all_services
-    Rails.cache.read CACHE_KEY
+    Rails.cache.read(CACHE_KEY) || load_all_services!
   end
 
   def self.filtered_services
