@@ -9,7 +9,7 @@ module Open311
     attribute :description
     attribute :metadata
     attribute :type
-    attribute :attrs, :default => []
+    attribute :attrs, :default => {}
 
     def service_name=(value)
       self.name = value
@@ -19,8 +19,18 @@ module Open311
       self.code = value
     end
 
+    def attrs=(values)
+      if values.is_a?(Array)
+        super Hash[values.map { |value| [value.code, value] }]
+      elsif values.is_a?(Hash)
+        super values
+      else
+        raise TypeError
+      end
+    end
+
     def ordered_attrs
-      attrs.sort_by(&:order)
+      Hash[attrs.sort_by { |k, v| v.code }]
     end
 
     def to_param

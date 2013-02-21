@@ -204,7 +204,8 @@ describe Open311::ApiWrapper do
     expect(service.metadata).to eq(true)
     expect(service.type).to eq("batch")
 
-    attribute = service.attrs[0]
+    service.attrs.should be_an_instance_of(Hash)
+    attribute = service.attrs.values.first
 
     expect(attribute.code).to eq("7041ac51-ec75-e211-9483-005056a613ac")
     expect(attribute.datatype).to eq("text")
