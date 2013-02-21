@@ -1,27 +1,26 @@
 module Open311
 
   class Service
+    include ActiveAttr::Model
 
-    attr_reader :name
-    attr_reader :code
-    attr_reader :group
-    attr_reader :description
-    attr_reader :metadata
-    attr_reader :type
-    attr_accessor :attributes
+    attribute :name
+    attribute :code
+    attribute :group
+    attribute :description
+    attribute :metadata
+    attribute :type
+    attribute :attrs, :default => []
 
-    def initialize(data)
-      @name = data['service_name']
-      @code = data['service_code']
-      @group = data['group']
-      @description = data['description']
-      @metadata = data['metadata']
-      @type = data['type']
-      @attributes = []
+    def service_name=(value)
+      self.name = value
+    end
+
+    def service_code=(value)
+      self.code = value
     end
 
     def to_param
-      @code
+      code
     end
   end
 

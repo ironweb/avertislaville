@@ -11,7 +11,7 @@ module RailsOpen311
     api_config = load_config
 
     api_wrapper = Open311::ApiWrapper.from_url(api_config['url'])
-    services = api_wrapper.services_with_attributes
+    services = api_wrapper.services_with_attrs
 
     Rails.cache.write CACHE_KEY, services
   end

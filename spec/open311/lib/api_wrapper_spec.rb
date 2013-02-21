@@ -119,14 +119,14 @@ describe Open311::ApiWrapper do
     expect(result["Ordures"][0]).to be_an_instance_of(Open311::Service)
   end
 
-  it "returns no attributes with an empty string" do
+  it "returns no attrs with an empty string" do
     resource = RestStub.new
     attribute_json = ""
     resource.add_response('/services/01234-1234-1234-1234.json', attribute_json)
 
     code = "01234-1234-1234-1234"
     wrapper = Open311::ApiWrapper.new(resource)
-    result = wrapper.attributes_from_code(code)
+    result = wrapper.attrs_from_code(code)
 
     expect(result).to eq([])
   end
@@ -138,7 +138,7 @@ describe Open311::ApiWrapper do
 
     code = "01234-1234-1234-1234"
     wrapper = Open311::ApiWrapper.new(resource)
-    result = wrapper.attributes_from_code(code)
+    result = wrapper.attrs_from_code(code)
 
     expect(result.length).to eq(1)
     attribute = result[0]
@@ -161,7 +161,7 @@ describe Open311::ApiWrapper do
     resource.add_response('/services/1934303d-7f43-e111-85e1-005056a60032.json', attribute_json)
 
     wrapper = Open311::ApiWrapper.new(resource)
-    services = wrapper.services_with_attributes
+    services = wrapper.services_with_attrs
     service = services[0]
 
     expect(service.name).to eq("Collecte des encombrants - secteur résidentiel")
@@ -171,7 +171,7 @@ describe Open311::ApiWrapper do
     expect(service.metadata).to eq(true)
     expect(service.type).to eq("batch")
 
-    attribute = service.attributes[0]
+    attribute = service.attrs[0]
 
     expect(attribute.code).to eq("7041ac51-ec75-e211-9483-005056a613ac")
     expect(attribute.datatype).to eq("text")

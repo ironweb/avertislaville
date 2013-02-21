@@ -38,6 +38,8 @@ gem 'simple_form'
 
 gem 'rest-client'
 
+gem 'active_attr'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

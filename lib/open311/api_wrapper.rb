@@ -34,22 +34,22 @@ module Open311
       all_services.group_by { |s| s.group }
     end
 
-    def attributes_from_code(code)
+    def attrs_from_code(code)
       response = @resource["/services/#{code}.json"].get.strip
       return [] if response.empty?
 
       json_data = JSON.parse(response)
-      raw_attributes = json_data['attributes']
-      return [] if raw_attributes.empty?
+      raw_attrs = json_data['attributes']
+      return [] if raw_attrs.empty?
 
-      attributes = raw_attributes.map { |a| Attribute.new(a) }
+      attrs = raw_attrs.map { |a| Attribute.new(a) }
 
-      return attributes
+      return attrs
     end
 
-    def services_with_attributes
+    def services_with_attrs
       services = all_services.map do |service|
-        service.attributes = attributes_from_code(service.code)
+        service.attrs = attrs_from_code(service.code)
         service
       end
       return services
