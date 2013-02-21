@@ -15,7 +15,7 @@ module Open311
     attribute :phone
     attribute :description
     attribute :media_url
-    attribute :attrs, :default => []
+    attribute :attrs, :default => {}
 
     def ordered_attrs
       attrs.sort_by(&:order)
