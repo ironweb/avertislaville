@@ -14,3 +14,14 @@
 //= require geo
 //= require gomap
 //= require_tree .
+//
+$(function() {
+     $('#register').addClass('invisible');
+     $('#rbyes').click(function(){
+        $('#register').removeClass('invisible');
+     });
+     $('#rbno').click(function(){
+        $('#register').addClass('invisible');
+     });
+});
+

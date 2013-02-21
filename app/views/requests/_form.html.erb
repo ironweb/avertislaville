@@ -39,12 +39,12 @@
   </fieldset>
   <div class="formSeparator">
     <h2><%= t('requests.membership') %></h2>
-    <input id="radio1" name="" value="yes" type="radio">
+    <input id="rbyes" name="create" value="yes" type="radio">
     <label for="radio1" class="radio"><%= t('requests.yes') %></label>
-    <input id="radio2" name="" value="no" type="radio" checked="checked">
+    <input id="rbno" name="create" value="no" type="radio" checked="checked">
     <label for="radio2" class="radio"><%= t('requests.no') %></label>
   </div>
-  <fieldset>
+  <fieldset id="register">
     <%= form.input :password, :placeholder => t('requests.password') %>
   </fieldset>
       <%= form.submit t('requests.submit'), :id => 'request_submit', :class => 'navBar' %>
