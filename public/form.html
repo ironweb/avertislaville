@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width">
+
+	<title></title>
+
+    <!-- Stylesheets -->
+    	<link rel="stylesheet" type="text/css" href="css/screen.css">
+</head>
+<body>
+    <div role="main">
+        <h1 class="navBar">Localisation</h1>
+        <form>
+            <p>Espace map localisation</p>
+            <fieldset class="navBar">
+                <legend class="visuallyhidden">Anomalie</legend>
+                <input id="localisation" name="localisation" type="search">
+                <button>Recherche</button>
+                <input id="description" name="description" type="text" placeholder="Description">
+            </fieldset>
+            <h2 class="navBar">Contact</h2>
+            <fieldset>
+                <legend class="visuallyhidden">Contact</legend>
+                <input id="firstName" name="firstName" type="text" placeholder="Nom">
+                <input id="lastName" name="lastName" type="text" placeholder="Prénom">
+                <input id="email" name="email" type="email" placeholder="Courriel">
+                <input id="tel" name="tel" type="tel" placeholder="Téléphone">
+            </fieldset>
+            <fieldset>
+                <legend>Créer un compte</legend>
+                <input id="radio1" name="" value="yes" type="radio">
+                <label for="radio1">Oui</label>
+                <input id="radio2" name="" value="no" type="radio">
+                <label for="radio2">Non</label>
+                <input id="username" name="username" type="text" placeholder="Nom d'utilisateur">
+                <input id="password" name="password" type="password" placeholder="Mot de passe">
+                <input id="passConfirm" name="passConfirm" type="password" placeholder="Confirmation du mot de passe">
+            </fieldset>
+            <input type="submit" value="Enregistrer" class="navBar">
+        </form>
+    </div>
+	<!--Scripts -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</body>
+</html>

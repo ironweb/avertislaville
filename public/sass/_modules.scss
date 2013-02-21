@@ -1,3 +1,26 @@
 /***** 		PROJET'S MODULES 		*****/
+.navBar{
+    display:block;
+    width:100%;
+    padding:10px 0;
+    background-color: $lightGradient;
+    @include filter-gradient($lightGradient, $darkGradient, vertical);
+    $experimental-support-for-svg: true;
+    @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
+
+}
+form{
+    fieldset{
+        padding:10px;
+    }
+    input{
+        width:100%;
+        &[type="submit"]{
+            color: $typoColor;
+            text-transform: uppercase;
+            border:1px solid $darkGradient;
+        }
+    }
+}
 
 /*****		END OF MODULES		*****/

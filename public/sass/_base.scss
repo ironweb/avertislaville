@@ -1,3 +1,55 @@
 /*****		PROJET'S BASIC STYLE		*****/
+body{
+    background: $bgColor;
+}
+h1, h2, h3, h4, h5, h6{
+    color: $typoColor;
+}
+p, label, legend{
+    color: $typoColor;
+}
+a{
+    &:link, &:visited{
 
+    }
+    &:hover, &:active{
+
+    }
+}
 /*****		END OF BASIC STYLE		*****/
+
+
+//This section will have to be relocalized
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  &.focusable {
+    &:active, &:focus {
+      clip: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      position: static;
+      width: auto;
+    }
+  }
+}
