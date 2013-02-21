@@ -39,6 +39,7 @@ gem 'simple_form'
 gem 'rest-client'
 
 gem 'active_attr'
+gem 'compass'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -46,7 +47,7 @@ gem 'active_attr'
 platform :ruby do
   group :production do
     # Use unicorn as the app server
-    gem 'unicorn'
+    #gem 'unicorn'
   end
   group :development do
     gem 'better_errors'
