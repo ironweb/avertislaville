@@ -7,8 +7,8 @@ module Open311
 
   class ApiWrapper
 
-    def self.from_uri(uri)
-      resource = RestClient::Resource.new(uri)
+    def self.from_url(url)
+      resource = RestClient::Resource.new(url)
       return self.new(resource)
     end
 
