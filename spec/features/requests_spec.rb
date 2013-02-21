@@ -75,7 +75,7 @@ describe "RequestsController", :type => :feature do
           FactoryGirl.build(:open311_attribute, :code => "phone", :datatype => "text")
         ]
         visit request_path('one_service')
-        within '#new_request' do
+        within '.service-attributes' do
           page.should have_selector('.control-group', :count => 2)
         end
       end

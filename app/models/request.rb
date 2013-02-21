@@ -2,6 +2,12 @@ require 'active_support/core_ext/hash/indifferent_access'
 class Request
   include ActiveAttr::Model
 
+  attribute :email
+  attribute :firstname
+  attribute :name
+  attribute :phone
+  attribute :password
+
   attr_reader :service
   attr_writer :attrs_values
 
