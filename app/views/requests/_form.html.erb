@@ -6,7 +6,9 @@
   <button id="minimize" type="button">minimize</button>
   <div id="map_canvas"></div>
   <div class="service-attributes">
-    <h2 class="navBar"><%= t('requests.information') %></h2>
+    <div class="navBar">
+      <h2><%= t('requests.information') %></h2>
+    </div>
     <fieldset>
       <legend class="visuallyhidden"><%= t('requests.information') %></legend>
       <% @request.service.ordered_attrs.each do |code, attr| %>
@@ -22,14 +24,21 @@
       <% end %>
     </fieldset>
   </div>
-  <h2 class="navBar"><%= t('requests.contact') %></h2>
+  <div class="navBar">
+    <h2><%= t('requests.contact') %></h2>
+  </div>
   <fieldset>
     <legend class="visuallyhidden"><%= t('requests.contact') %></legend>
     <%= form.input :firstname, :placeholder => t('requests.firstname') %>
     <%= form.input :name, :placeholder => t('requests.lastname') %>
     <%= form.input :email, :placeholder => t('requests.email') %>
     <%= form.input :phone, :placeholder => t('requests.phone') %>
+  </fieldset>
+  <div class="formSeparator">
+    <h2><%= t('requests.membership') %></h2>
+  </div>
+  <fieldset>
     <%= form.input :password, :placeholder => t('requests.password') %>
   </fieldset>
-    
+  <%= form.submit :value => t('requests.register'), :class => 'navBar' %>
 <% end %>
