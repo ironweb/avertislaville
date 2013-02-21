@@ -66,6 +66,9 @@ form{
     label, legend{
         margin-right:10px;
         @include bebas();
+        &.string, &.email, &.password, &.tel{
+            display:none;
+        }
     }
 }
 .map_zone{
@@ -96,5 +99,6 @@ form{
     width: 100%;
     height: 200px; 
 }
+
 
 /*****		END OF MODULES		*****/

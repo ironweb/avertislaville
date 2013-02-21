@@ -7,13 +7,13 @@
   <button id="minimize" type="button"><span aria-hidden="true" data-icon="&#xe001;"></span></button>
   <div id="map_canvas"></div>
 </div>
+  <textarea id="localisation"></textarea>
   <div class="service-attributes">
 <div class="navBar">
       <h2><%= t('requests.information') %></h2>
     </div>    
 <fieldset>
       <legend class="visuallyhidden"><%= t('requests.information') %></legend>
-<%= form.input :description %>
       <% @request.service.ordered_attrs.each do |code, attr| %>
         <%= form.input attr.code.to_sym,
           :label => attr.description,
