@@ -16,7 +16,7 @@ module Open311
       @resource = resource
     end
 
-    def services
+    def all_services
       response = @resource['/services.json'].get.strip
       return [] if response.empty?
 
@@ -27,11 +27,11 @@ module Open311
     end
 
     def group_names
-      services.map { |s| s.group }.uniq
+      all_services.map { |s| s.group }.uniq
     end
 
     def groups
-      services.group_by { |s| s.group }
+      all_services.group_by { |s| s.group }
     end
 
     def attributes_from_code(code)
