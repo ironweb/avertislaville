@@ -1,7 +1,7 @@
 require 'rest-client'
 require 'json'
 require 'open311/service'
-require 'open311/attributes'
+require 'open311/attribute'
 
 module Open311
 
