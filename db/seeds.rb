@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+def run_sql_seed(file)
+  file = File.join("#{Rails.root}", 'db', 'seeds', file)
+  ActiveRecord::Base.connection.execute(IO.read(file))
+end
+run_sql_seed('areas.sql')
+run_sql_seed('districts.sql')
