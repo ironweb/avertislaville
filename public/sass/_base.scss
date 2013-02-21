@@ -1,9 +1,16 @@
 /*****		PROJET'S BASIC STYLE		*****/
 body{
     background: $bgColor;
+    font-size: 16px;
+    font-size: 1em;
 }
 h1, h2, h3, h4, h5, h6{
     color: $typoColor;
+    @include bebas();
+    font-size: 1.25rem;
+}
+h1{
+    text-align:center;
 }
 p, label, legend{
     color: $typoColor;

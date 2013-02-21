@@ -69,6 +69,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block; }
 
 /*****		PROJET'S FONTS		*****/
+@font-face {
+  font-family: 'BebasNeueRegular';
+  src: url("../fonts/BebasNeue-webfont.eot");
+  src: url("../fonts/BebasNeue-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/BebasNeue-webfont.woff") format("woff"), url("../fonts/BebasNeue-webfont.ttf") format("truetype"), url("../fonts/BebasNeue-webfont.svg#BebasNeueRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Nevis';
+  src: url("../fonts/nevis.eot");
+  src: url("../fonts/nevis.eot?#iefix") format("embedded-opentype"), url("../fonts/nevis.woff") format("woff"), url("../fonts/nevis.ttf") format("truetype"), url("../fonts/nevis.svg#nevis") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 /*****		END OF FONTS		*****/
 /***** 		PROJET'S VARIABLES 		*****/
 /*****		END OF VARIABLES		*****/
@@ -77,13 +91,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /*****		PROJET'S BASIC STYLE		*****/
 /* line 2, ../sass/_base.scss */
 body {
-  background: #2c2c2c; }
+  background: #2c2c2c;
+  font-size: 16px;
+  font-size: 1em; }
 
-/* line 5, ../sass/_base.scss */
+/* line 7, ../sass/_base.scss */
 h1, h2, h3, h4, h5, h6 {
-  color: white; }
+  color: white;
+  font-family: 'BebasNeueRegular', Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 1px #aaaaaa;
+  font-size: 1.25rem; }
 
-/* line 8, ../sass/_base.scss */
+/* line 12, ../sass/_base.scss */
+h1 {
+  text-align: center; }
+
+/* line 15, ../sass/_base.scss */
 p, label, legend {
   color: white; }
 
@@ -91,7 +116,7 @@ p, label, legend {
 /*
  * Hide from both screenreaders and browsers: h5bp.com/u
  */
-/* line 27, ../sass/_base.scss */
+/* line 34, ../sass/_base.scss */
 .hidden {
   display: none !important;
   visibility: hidden; }
@@ -99,7 +124,7 @@ p, label, legend {
 /*
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
  */
-/* line 36, ../sass/_base.scss */
+/* line 43, ../sass/_base.scss */
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -109,7 +134,7 @@ p, label, legend {
   padding: 0;
   position: absolute;
   width: 1px; }
-  /* line 46, ../sass/_base.scss */
+  /* line 53, ../sass/_base.scss */
   .visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
     clip: auto;
     height: auto;
@@ -142,11 +167,35 @@ form fieldset {
   padding: 10px; }
 /* line 16, ../sass/_modules.scss */
 form input {
-  width: 100%; }
-  /* line 18, ../sass/_modules.scss */
+  width: 95%;
+  border: 0px;
+  padding: 5px;
+  margin: 8px 0;
+  font-family: Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  -webkit-border-radius: 4px 4px;
+  -moz-border-radius: 4px / 4px;
+  border-radius: 4px / 4px; }
+  /* line 25, ../sass/_modules.scss */
   form input[type="submit"] {
     color: white;
     text-transform: uppercase;
-    border: 1px solid #3496e1; }
+    border: 1px solid #3496e1;
+    font-family: 'BebasNeueRegular', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 1px #aaaaaa;
+    font-size: 1.25rem; }
+  /* line 32, ../sass/_modules.scss */
+  form input[type="radio"] {
+    width: auto; }
+/* line 36, ../sass/_modules.scss */
+form label, form legend {
+  margin-right: 10px;
+  font-family: 'BebasNeueRegular', Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 1px #aaaaaa; }
 
 /*****		END OF MODULES		*****/

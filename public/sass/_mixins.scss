@@ -11,4 +11,17 @@
 	    clear:both;
 	}
 }
+
+//Title typo
+@mixin bebas(){
+	font-family: 'BebasNeueRegular', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    @include single-text-shadow;
+}
+@mixin nevis(){
+	 font-family: 'Nevis', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+}
 /*****		END OF MIXINS		*****/
