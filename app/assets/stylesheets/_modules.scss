@@ -27,7 +27,7 @@ form{
     fieldset{
         padding:10px;
     }
-    input{
+    input, textarea{
         width:95%;
         border:0px;
         padding:5px;
@@ -47,9 +47,17 @@ form{
             width:auto;
         }
     }
+    textarea{
+        height:75px;
+    }
     label, legend{
         margin-right:10px;
         @include bebas();
+    }
+    h2{
+        &.navBar{
+            padding:10px;
+        }
     }
 }
 #map_canvas{
