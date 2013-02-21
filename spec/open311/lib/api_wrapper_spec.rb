@@ -184,4 +184,34 @@ describe Open311::ApiWrapper do
     expect(attribute.variable).to eq(false)
   end
 
+  it "returns a service with an attribute" do
+    resource = RestStub.new
+    service_json = [sample_service].to_json
+    attribute_json = sample_attribute.to_json
+    resource.add_response('/services.json', [sample_service].to_json)
+    resource.add_response('/services/1934303d-7f43-e111-85e1-005056a60032.json', attribute_json)
+
+    wrapper = Open311::ApiWrapper.new(resource)
+    services = wrapper.services_with_attributes
+    service = services[0]
+
+    expect(service.name).to eq("Collecte des encombrants - secteur résidentiel")
+    expect(service.code).to eq("1934303d-7f43-e111-85e1-005056a60032")
+    expect(service.group).to eq("Ordures")
+    expect(service.description).to eq("Description à venir")
+    expect(service.metadata).to eq(true)
+    expect(service.type).to eq("batch")
+
+    attribute = service.attributes[0]
+
+    expect(attribute.code).to eq("7041ac51-ec75-e211-9483-005056a613ac")
+    expect(attribute.datatype).to eq("text")
+    expect(attribute.description).to eq("Pour disposer d`appareils contenant des halocarbures (congélateur, réfrigérateur, climatiseur, etc.), veuillez communiquer avec votre bureau d'arrondissement.")
+    expect(attribute.datatype_description).to eq("Pour disposer d`appareils contenant des halocarbures (congélateur, réfrigérateur, climatiseur, etc.), veuillez communiquer avec votre bureau d'arrondissement.")
+    expect(attribute.order).to eq(2)
+    expect(attribute.required).to eq(false)
+    expect(attribute.values).to eq([])
+    expect(attribute.variable).to eq(false)
+  end
+
 end

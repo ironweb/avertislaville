@@ -47,6 +47,14 @@ module Open311
       return attributes
     end
 
+    def services_with_attributes
+      services = all_services.map do |service|
+        service.attributes = attributes_from_code(service.code)
+        service
+      end
+      return services
+    end
+
   end
 
 end

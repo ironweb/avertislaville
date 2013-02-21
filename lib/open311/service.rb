@@ -8,6 +8,7 @@ module Open311
     attr_reader :description
     attr_reader :metadata
     attr_reader :type
+    attr_accessor :attributes
 
     def initialize(data)
       @name = data['service_name']
@@ -16,6 +17,7 @@ module Open311
       @description = data['description']
       @metadata = data['metadata']
       @type = data['type']
+      @attributes = []
     end
 
   end
