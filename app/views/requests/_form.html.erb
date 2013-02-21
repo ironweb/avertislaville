@@ -1,0 +1,9 @@
+<%= simple_form_for(@service, url: request_path(@service)) do |form| %>
+  <% @service.ordered_attrs.each do |attr| %>
+    <%= form.input attr.code.to_sym,
+      :label => attr.description,
+      :type => "open311_#{attr.datatype}",
+      :required => attr.required,
+      :input_html => { value: nil } %>
+  <% end %>
+<% end %>

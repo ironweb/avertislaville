@@ -19,6 +19,10 @@ module Open311
       self.code = value
     end
 
+    def ordered_attrs
+      attrs.sort_by(&:order)
+    end
+
     def to_param
       code
     end
