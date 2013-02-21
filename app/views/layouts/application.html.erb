@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>Rouges</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width">
+
+  <title></title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="css/screen.css">
 </head>
 <body>
+  <!--Scripts -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<%= yield %>
-
+  <%= yield %>
 </body>
 </html>

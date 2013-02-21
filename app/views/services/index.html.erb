@@ -1,0 +1,5 @@
+<ul>
+  <% @services.each do |service| %>
+    <li><%= link_to(service.name, request_path(service)) %></li>
+  <% end %>
+</ul>
