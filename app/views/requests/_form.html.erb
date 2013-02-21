@@ -2,11 +2,11 @@
   <h1>Localisation</h1>
 </header>
 <%= simple_form_for(@request, url: request_path(@request.service)) do |form| %>
-
-  <button id="enlarge" type="button">enlarge</button>
-  <button id="minimize" type="button">minimize</button>
+<div class="map_zone">
+  <button id="enlarge" type="button"><span aria-hidden="true" data-icon="&#xe000;"></span></button>
+  <button id="minimize" type="button"><span aria-hidden="true" data-icon="&#xe001;"></span></button>
   <div id="map_canvas"></div>
-
+</div>
   <h2 class="navBar"><%= t('requests.information') %></h2>
   <fieldset>
     <legend class="visuallyhidden"><%= t('requests.information') %></legend>
