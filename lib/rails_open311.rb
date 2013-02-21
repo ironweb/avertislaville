@@ -20,4 +20,10 @@ module RailsOpen311
     Rails.cache.read CACHE_KEY
   end
 
+  def self.filtered_services
+    api_config = load_config
+    groups = api_config['groups']
+    return all_services.select { |s| groups.include? s.group }
+  end
+
 end
