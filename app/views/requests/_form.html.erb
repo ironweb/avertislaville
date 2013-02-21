@@ -7,31 +7,41 @@
   <button id="minimize" type="button"><span aria-hidden="true" data-icon="&#xe001;"></span></button>
   <div id="map_canvas"></div>
 </div>
-  <h2 class="navBar"><%= t('requests.information') %></h2>
-  <fieldset>
-    <legend class="visuallyhidden"><%= t('requests.information') %></legend>
-    <%= form.input :description %>
-    <% @request.service.ordered_attrs.each do |code, attr| %>
-      <%= form.input attr.code.to_sym,
-        :label => attr.description,
-        :placeholder => attr.description,
-        :as => "open311_#{attr.datatype}",
-        :collection => attr.values,
-        :label_method => lambda { |v| v['name'] },
-        :value_method => lambda { |v| v['key'] },
-        :required => attr.required,
-        :input_html => { value: nil } %>
-    <% end %>
-  </fieldset>
-
-  <h2 class="navBar"><%= t('requests.contact') %></h2>
-  <fieldset>
+  <div class="service-attributes">
+<div class="navBar">
+      <h2><%= t('requests.information') %></h2>
+    </div>    
+<fieldset>
+      <legend class="visuallyhidden"><%= t('requests.information') %></legend>
+<%= form.input :description %>
+      <% @request.service.ordered_attrs.each do |code, attr| %>
+        <%= form.input attr.code.to_sym,
+          :label => attr.description,
+          :placeholder => attr.description,
+          :as => "open311_#{attr.datatype}",
+          :collection => attr.values,
+          :label_method => lambda { |v| v['name'] },
+          :value_method => lambda { |v| v['key'] },
+          :required => attr.required,
+          :input_html => { value: nil } %>
+      <% end %>
+    </fieldset>
+  </div>
+ <div class="navBar">
+    <h2><%= t('requests.contact') %></h2>
+  </div>  
+<fieldset>
     <legend class="visuallyhidden"><%= t('requests.contact') %></legend>
     <%= form.input :first_name, :placeholder => t('requests.firstname') %>
     <%= form.input :last_name, :placeholder => t('requests.lastname') %>
     <%= form.input :email, :placeholder => t('requests.email') %>
     <%= form.input :phone, :placeholder => t('requests.phone') %>
+  </fieldset>
+  <div class="formSeparator">
+    <h2><%= t('requests.membership') %></h2>
+  </div>
+  <fieldset>
     <%= form.input :password, :placeholder => t('requests.password') %>
   </fieldset>
-  <%= form.submit t('request.submit'), :id => 'request_submit' %>
+      <%= form.submit t('request.submit'), :id => 'request_submit' %>
 <% end %>

@@ -9,6 +9,15 @@
     @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
 
 }
+.formSeparator{
+    border-top:1px solid lighten($bgColor, 5%);
+    border-bottom:1px solid lighten($bgColor, 5%);
+    padding:10px 0;
+    margin:10px;
+}
+h2{
+    margin-left:10px;
+}
 
 ::-webkit-input-placeholder {
     color: #2c2c2c;
@@ -27,7 +36,7 @@ form{
     fieldset{
         padding:10px;
     }
-    input, textarea{
+    input, textarea, select{
         width:95%;
         border:0px;
         padding:5px;
@@ -41,6 +50,7 @@ form{
             text-transform: uppercase;
             border:1px solid $darkGradient;
             @include bebas();
+            @include border-radius(0px);
             font-size: 1.25rem;
         }
         &[type="radio"]{
@@ -50,14 +60,12 @@ form{
     textarea{
         height:75px;
     }
+    select{
+        width:99%;
+    }
     label, legend{
         margin-right:10px;
         @include bebas();
-    }
-    h2{
-        &.navBar{
-            padding:10px;
-        }
     }
 }
 .map_zone{

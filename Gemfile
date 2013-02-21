@@ -84,6 +84,10 @@ group :development, :test do
   gem 'awesome_print'
 end
 
+group :production do
+  gem 'unicorn'
+end
+
 platforms :mswin, :mingw do
   gem 'spork'
   gem 'factory_girl_rails'

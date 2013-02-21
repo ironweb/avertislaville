@@ -5,6 +5,7 @@ fr:
   requests:
     information: 'Information'
     contact: 'Contact'
+    membership: 'Créer un compte'
     firstname: 'Prénom'
     lastname: 'Nom'
     email: 'Courriel'
