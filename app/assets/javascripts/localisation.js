@@ -84,14 +84,19 @@ function initLocalisation(){
 }
 
 function initBigMap(){
-	$("#map_canvas").css('height',"350");
+	$("#enlarge").hide();
+	$("#minimize").show();
+	$("#map_canvas").animate({height: "350"});
 }
 function endBigMap(){
-	$("#map_canvas").css('height',"200");
+	$("#minimize").hide();
+	$("#enlarge").show();
+	$("#map_canvas").animate({height: "200"});
 }
 
 $(document).ready(function() {
 	initLocalisation();
+	$("#minimize").hide();
 	$("#enlarge").bind("click", initBigMap);
 	$("#minimize").bind("click", endBigMap);
 });
