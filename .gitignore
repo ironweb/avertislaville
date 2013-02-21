@@ -4,6 +4,7 @@
 
 # Per-machine configuration
 /config/database.yml
+/config/open311.yml
 
 # Vim
 *.sw?

@@ -12,5 +12,7 @@ Then run :
 
     bundle install
     cp config/database.yml-tmp config/database.yml
-    # change your config accordingly
+    # change your database config accordingly
+    cp config/open311.yml-tmp config/open311.yml
+    # change your open311 config accordingly
     bundle exec rake db:create db:schema:load db:seed
