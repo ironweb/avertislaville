@@ -2,6 +2,9 @@
   <h1>Localisation</h1>
 </header>
 <%= simple_form_for(@request, url: request_path(@request.service)) do |form| %>
+  <button id="enlarge" type="button">enlarge</button>
+  <button id="minimize" type="button">minimize</button>
+  <div id="map_canvas"></div>
   <div class="service-attributes">
     <% @request.service.ordered_attrs.each do |code, attr| %>
       <%= form.input attr.code.to_sym,

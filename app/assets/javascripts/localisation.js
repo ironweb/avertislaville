@@ -23,6 +23,7 @@ function updateCoordinate(){
 }
 
 function initMap(){
+	if($('#map_canvas').length == 0) return
 	$("#map_canvas").goMap({
 		maptype: 'ROADMAP',
 		mapTypeControl: false,
