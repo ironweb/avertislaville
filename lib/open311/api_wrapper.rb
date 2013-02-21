@@ -7,17 +7,18 @@ module Open311
 
   class ApiWrapper
 
-    def self.from_url(url)
+    def self.from_url(url, jurisdiction_id=nil)
       resource = RestClient::Resource.new(url)
-      return self.new(resource)
+      return self.new(resource, jurisdiction_id)
     end
 
-    def initialize(resource)
+    def initialize(resource, jurisdiction_id=nil)
       @resource = resource
+      @jurisdiction_id = jurisdiction_id
     end
 
     def all_services
-      response = @resource['/services.json'].get.strip
+      response = query_service('/services.json')
       return [] if response.empty?
 
       raw_services = JSON.parse(response)
@@ -35,7 +36,8 @@ module Open311
     end
 
     def attrs_from_code(code)
-      response = @resource["/services/#{code}.json"].get.strip
+      url = "/services/#{code}.json"
+      response = query_service(url)
       return [] if response.empty?
 
       json_data = JSON.parse(response)
@@ -53,6 +55,18 @@ module Open311
         service
       end
       return services
+    end
+
+    def query_service(path)
+      params = build_params
+      response = @resource[path].get(params)
+      return response.strip
+    end
+
+    def build_params
+      params = {}
+      params[:jurisdiction_id] = @jurisdiction_id unless @jurisdiction_id.nil?
+      return params
     end
 
   end

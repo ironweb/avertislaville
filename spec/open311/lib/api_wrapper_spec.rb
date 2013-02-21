@@ -3,6 +3,18 @@ require 'spec_helper'
 require 'open311_helper.rb'
 require 'json'
 
+class ResponseStub
+
+  def initialize(response)
+    @response = response
+  end
+
+  def get(params)
+    return @response
+  end
+
+end
+
 class RestStub
   attr_accessor :get
 
@@ -15,7 +27,7 @@ class RestStub
   end
 
   def [](key)
-    return Struct.new(:get).new(@responses[key])
+    return ResponseStub.new(@responses[key])
   end
 
 end
