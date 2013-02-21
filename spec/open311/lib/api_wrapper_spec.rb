@@ -15,7 +15,7 @@ class ResponseStub
 
 end
 
-class RestStub
+class GetStub
   attr_accessor :get
 
   def initialize
@@ -53,68 +53,70 @@ class PostStub
 
 end
 
+api_key = "12345678-1234-A1B2-C3D4-AA1A111A1A1A"
 
 describe Open311::ApiWrapper do
 
   it "returns an empty list when no services" do
-    resource = RestStub.new
+    resource = GetStub.new
     resource.add_response('/services.json', "")
 
-    wrapper = Open311::ApiWrapper.new(resource, "1234")
-    expect(wrapper.all_services).to eq([])
+    wrapper = Open311::ApiWrapper.new(resource, api_key)
+    wrapper.all_services.should == []
   end
 
   it "returns once service" do
-    resource = RestStub.new()
+    resource = GetStub.new()
     service_json = [sample_service].to_json
     resource.add_response('/services.json', service_json)
 
-    wrapper = Open311::ApiWrapper.new(resource, "1234")
+    wrapper = Open311::ApiWrapper.new(resource, api_key)
     all_services = wrapper.all_services
 
-    expect(all_services.length).to eq(1)
-    service = all_services[0]
+    all_services.length.should == 1
+    service = all_services.first
 
-    expect(service.name).to eq("Collecte des encombrants - secteur résidentiel")
-    expect(service.code).to eq("1934303d-7f43-e111-85e1-005056a60032")
-    expect(service.group).to eq("Ordures")
-    expect(service.description).to eq("Description à venir")
-    expect(service.metadata).to eq(true)
-    expect(service.type).to eq("batch")
-    expect(service.to_param).to eq(service.code)
+    service.name.should == sample_service['service_name']
+    service.code.should == sample_service['service_code']
+    service.group.should == sample_service['group']
+    service.description.should == sample_service['description']
+    service.metadata.should == sample_service['metadata']
+    service.type.should ==  sample_service['type']
+    service.to_param.should == sample_service['service_code']
   end
 
   it "returns a service with minimal keys" do
-    resource = RestStub.new()
+    resource = GetStub.new
     service_json = [min_sample_service].to_json
     resource.add_response('/services.json', service_json)
 
-    wrapper = Open311::ApiWrapper.new(resource, "1234")
+    wrapper = Open311::ApiWrapper.new(resource, api_key)
     all_services = wrapper.all_services
 
-    expect(all_services.length).to eq(1)
+    all_services.length.should == 1
     service = all_services[0]
 
-    expect(service.name).to eq("Collecte des encombrants - secteur résidentiel")
-    expect(service.code).to eq("1934303d-7f43-e111-85e1-005056a60032")
-    expect(service.group).to eq("Ordures")
-    expect(service.description).to eq("Description à venir")
-    expect(service.metadata).to eq(true)
-    expect(service.type).to eq("batch")
+    service.name.should == sample_service['service_name']
+    service.code.should == sample_service['service_code']
+    service.group.should == sample_service['group']
+    service.description.should == sample_service['description']
+    service.metadata.should == sample_service['metadata']
+    service.type.should ==  sample_service['type']
+    service.to_param.should == sample_service['service_code']
   end
 
   it "returns the names of the groups" do
-    resource = RestStub.new
+    resource = GetStub.new
     service_json = [min_sample_service].to_json
     resource.add_response('/services.json', service_json)
 
     wrapper = Open311::ApiWrapper.new(resource, "1234")
 
-    expect(wrapper.group_names).to eq(["Ordures"])
+    wrapper.group_names.should == ["Ordures"]
   end
 
   it "returns a single group name with 2 services" do
-    resource = RestStub.new
+    resource = GetStub.new
     service_json = [sample_service, sample_service].to_json
     resource.add_response('/services.json', service_json)
 
@@ -125,47 +127,47 @@ describe Open311::ApiWrapper do
   end
 
   it "returns a single group name with 2 services" do
-    resource = RestStub.new
+    resource = GetStub.new
     second_service = sample_service.dup
     second_service['group'] = 'Trottoirs'
     service_json = [sample_service, second_service].to_json
     resource.add_response('/services.json', service_json)
 
-    wrapper = Open311::ApiWrapper.new(resource, "1234")
+    wrapper = Open311::ApiWrapper.new(resource, api_key)
 
     result = ["Ordures", "Trottoirs"]
-    expect(wrapper.group_names).to eq(result)
+    wrapper.group_names.should == result
   end
 
   it "groups services together" do
-    resource = RestStub.new
+    resource = GetStub.new
     second_service = sample_service.dup
     second_service['group'] = 'Trottoirs'
     service_json = [sample_service, second_service].to_json
     resource.add_response('/services.json', service_json)
 
-    wrapper = Open311::ApiWrapper.new(resource, "1234")
+    wrapper = Open311::ApiWrapper.new(resource, api_key)
 
-    result = wrapper.groups
-    expect(result.keys).to eq(["Ordures", "Trottoirs"])
-    expect(result["Ordures"]).to be_an_instance_of(Array)
-    expect(result["Ordures"][0]).to be_an_instance_of(Open311::Service)
+    groups = wrapper.groups
+    groups.keys.should == ["Ordures", "Trottoirs"]
+    groups["Ordures"].should be_an_instance_of(Array)
+    groups["Ordures"][0].should be_an_instance_of(Open311::Service)
   end
 
   it "returns no attrs with an empty string" do
-    resource = RestStub.new
+    resource = GetStub.new
     attribute_json = ""
     resource.add_response('/services/01234-1234-1234-1234.json', attribute_json)
 
     code = "01234-1234-1234-1234"
     wrapper = Open311::ApiWrapper.new(resource, "1234")
-    result = wrapper.attrs_from_code(code)
+    attrs = wrapper.attrs_from_code(code)
 
-    expect(result).to eq([])
+    attrs.should == []
   end
 
   it "returns one attribute" do
-    resource = RestStub.new
+    resource = GetStub.new
     attribute_json = sample_attribute.to_json
     resource.add_response('/services/01234-1234-1234-1234.json', attribute_json)
 
@@ -187,7 +189,7 @@ describe Open311::ApiWrapper do
   end
 
   it "returns a service with an attribute" do
-    resource = RestStub.new
+    resource = GetStub.new
     service_json = [sample_service].to_json
     attribute_json = sample_attribute.to_json
     resource.add_response('/services.json', [sample_service].to_json)
@@ -219,19 +221,15 @@ describe Open311::ApiWrapper do
 
   it "sends a request to the api" do
     resource = PostStub.new(sample_response.to_json)
-    params = {
+    request = Open311::Request.new({
       :service_code => "1234",
       :lat => 12.34,
       :long => 23.45,
-    }
+    })
 
-    request = Open311::Request.new(params)
-
-    api_key = "1234"
     wrapper = Open311::ApiWrapper.new(resource, api_key)
     wrapper.send_request(request)
 
-    result = resource.post_result
     expected = {
       'api_key' => api_key,
       'service_code' => "1234",
@@ -239,7 +237,7 @@ describe Open311::ApiWrapper do
       'long' => 23.45,
     }
 
-    expect(result).to eq(expected)
+    resource.post_result.should == expected
   end
 
   it "sends a request with attributes to the api" do
@@ -257,11 +255,9 @@ describe Open311::ApiWrapper do
 
     request.attrs = attributes
 
-    api_key = "1234"
     wrapper = Open311::ApiWrapper.new(resource, api_key)
     wrapper.send_request(request)
 
-    result = resource.post_result
     expected = {
       'api_key' => api_key,
       'service_code' => "1234",
@@ -271,7 +267,7 @@ describe Open311::ApiWrapper do
       'attribute[3456-3456-3456-3456]' => '4567-4567-4567-4567',
     }
 
-    expect(result).to eq(expected)
+    resource.post_result.should == expected
   end
 
   it "returns a response when sending a request" do
@@ -282,7 +278,6 @@ describe Open311::ApiWrapper do
       :long => 23.45,
     })
 
-    api_key = "1234"
     wrapper = Open311::ApiWrapper.new(resource, api_key)
 
     response = wrapper.send_request(request)
