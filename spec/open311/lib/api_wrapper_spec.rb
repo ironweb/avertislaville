@@ -43,12 +43,25 @@ class PostStub
   end
 
   def post(payload)
+    code = 200
     @result = payload
-    return @response
+    resp = Struct.new(:code, :body).new(code, @response)
+    yield resp
   end
 
   def post_result
     @result
+  end
+
+end
+
+class ErrorStub < PostStub
+
+  def post(payload)
+    code = 400
+    body = "[{\"code\":\"Forbidden\",\"description\":\"'api_key' : L'argument ne peut pas \xC3\xAAtre null ou vide.\"}]"
+    response = Struct.new(:code, :body).new(code, body)
+    yield response
   end
 
 end
@@ -286,6 +299,20 @@ describe Open311::ApiWrapper do
     response.service_notice.should be_nil
     response.service_request_id.should be_nil
     response.token.should == "c5f0d6ad-59ca-44a4-86e8-a2d72708f54c"
+  end
+
+  it "raises an exception when api returns a 400 error" do
+    resource = ErrorStub.new(sample_response.to_json)
+    request = Open311::Request.new({
+      :service_code => "1234",
+      :lat => 12.34,
+      :long => 23.45,
+    })
+
+    wrapper = Open311::ApiWrapper.new(resource, api_key)
+    response = wrapper.send_request(request)
+    response.error?.should == true
+    response.error_message.should == "'api_key' : L'argument ne peut pas \xC3\xAAtre null ou vide."
   end
 
 end

@@ -16,3 +16,7 @@ data = {
   :long => 23.45,
 }
 
+resource['/requests.json'].post(data) do |response|
+  pp response.code
+  pp response.body
+end

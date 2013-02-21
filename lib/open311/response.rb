@@ -7,6 +7,12 @@ module Open311
     attribute :token
     attribute :service_notice
     attribute :account_id
+    attribute :error_message
+
+    def error?
+      !error_message.nil?
+    end
+
   end
 
 end
