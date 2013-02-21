@@ -26,30 +26,12 @@ module Open311
     end
 
     def to_post_params
-      keys = [
-        :service_code,
-        :description,
-        :lat,
-        :long,
-        :email,
-        :device_id,
-        :account_id,
-        :first_name,
-        :last_name,
-        :phone,
-        :description,
-        :media_url,
-      ]
-
-      params = {}
-
-      keys.map do |key|
-        value = self[key]
-        if value
-          params[key] = value
-        end
+      params = attributes.reject { |k,v| v.nil? }
+      extra_attrs = params.delete('attrs')
+      extra_attrs.each do |key, value|
+        param_key = "attribute[#{key}]"
+        params[param_key] = value
       end
-
       params
     end
   end

@@ -34,12 +34,17 @@ end
 
 class PostStub
 
+  def initialize(response)
+    @response = response
+  end
+
   def [](key)
     return self
   end
 
   def post(payload)
     @result = payload
+    return @response
   end
 
   def post_result
@@ -212,7 +217,7 @@ describe Open311::ApiWrapper do
   end
 
   it "sends a request to the api" do
-    resource = PostStub.new
+    resource = PostStub.new(sample_response.to_json)
     params = {
       :service_code => "1234",
       :lat => 12.34,
@@ -227,13 +232,64 @@ describe Open311::ApiWrapper do
 
     result = resource.post_result
     expected = {
-      :api_key => api_key,
-      :service_code => "1234",
-      :lat => 12.34,
-      :long => 23.45,
+      'api_key' => api_key,
+      'service_code' => "1234",
+      'lat' => 12.34,
+      'long' => 23.45,
     }
 
     expect(result).to eq(expected)
+  end
+
+  it "sends a request with attributes to the api" do
+    resource = PostStub.new(sample_response.to_json)
+    request = Open311::Request.new({
+      :service_code => "1234",
+      :lat => 12.34,
+      :long => 23.45,
+    })
+
+    attributes = {
+      '1234-1234-1234-1234' => '2345-2345-2345-2345',
+      '3456-3456-3456-3456' => '4567-4567-4567-4567'
+    }
+
+    request.attrs = attributes
+
+    api_key = "1234"
+    wrapper = Open311::ApiWrapper.new(resource, api_key)
+    wrapper.send_request(request)
+
+    result = resource.post_result
+    expected = {
+      'api_key' => api_key,
+      'service_code' => "1234",
+      'lat' => 12.34,
+      'long' => 23.45,
+      'attribute[1234-1234-1234-1234]' => '2345-2345-2345-2345',
+      'attribute[3456-3456-3456-3456]' => '4567-4567-4567-4567',
+    }
+
+    expect(result).to eq(expected)
+  end
+
+  it "returns a response when sending a request" do
+    resource = PostStub.new(sample_response.to_json)
+    request = Open311::Request.new({
+      :service_code => "1234",
+      :lat => 12.34,
+      :long => 23.45,
+    })
+
+    api_key = "1234"
+    wrapper = Open311::ApiWrapper.new(resource, api_key)
+
+    response = wrapper.send_request(request)
+
+    response.account_id.should be_nil
+    response.service_notice.should be_nil
+    response.service_request_id.should be_nil
+    response.token.should == "c5f0d6ad-59ca-44a4-86e8-a2d72708f54c"
   end
 
 end
