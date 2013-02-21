@@ -1,7 +1,6 @@
 url: __YOUR_API_URL__
 apikey: __YOUR_API_KEY__
 jurisdiction_id: __YOUR_JURISDICTION_ID__
-groups:
-    - Group1
-    - Group2
-    - Group3
+services:
+    - __SERVICE_GUID1__
+    - __SERVICE_GUID2__

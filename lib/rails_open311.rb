@@ -27,8 +27,8 @@ module RailsOpen311
 
   def self.filtered_services
     api_config = load_config
-    groups = api_config['groups']
-    return all_services.select { |s| groups.include? s.group }
+    grouped_services = Hash[all_services.map { |s| [s.code, s] }]
+    return api_config['services'].map { |sc| grouped_services[sc] }
   end
 
 end
