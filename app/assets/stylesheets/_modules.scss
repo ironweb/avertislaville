@@ -9,6 +9,20 @@
     @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
 
 }
+
+::-webkit-input-placeholder {
+    color: #2c2c2c;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: #2c2c2c;  
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #2c2c2c;  
+}
+:-ms-input-placeholder {  
+   color: #2c2c2c;  
+}
+
 form{
     fieldset{
         padding:10px;
