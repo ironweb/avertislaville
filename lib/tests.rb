@@ -10,8 +10,9 @@ response = resource['/services.json'].get
 services = JSON.parse(response)
 first_service = services.first
 
-puts "getting attributes"
-code = first_service['service_code']
-response = resource["/services/#{code}.json"].get
-attributes = JSON.parse(response)
-pp attributes
+data = {
+  :service_code => first_service[:service_code],
+  :lat => 12.23,
+  :long => 23.45,
+}
+
