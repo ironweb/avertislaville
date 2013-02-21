@@ -63,8 +63,13 @@ GEM
       xpath (~> 1.0.0)
     childprocess (0.3.8)
       ffi (~> 1.0, >= 1.0.11)
+    chunky_png (1.2.7)
     coderay (1.0.8)
     columnize (0.3.6)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
     debug_inspector (0.0.2)
     debugger (1.3.1)
       columnize (>= 0.3.1)
@@ -88,6 +93,7 @@ GEM
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
     ffi (1.4.0)
+    fssm (0.2.10)
     guard (1.6.2)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -116,7 +122,6 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kgio (2.8.0)
     listen (0.7.2)
     lumberjack (1.0.2)
     mail (2.4.4)
@@ -157,6 +162,8 @@ GEM
       activesupport (= 3.2.12)
       bundler (~> 1.0)
       railties (= 3.2.12)
+    rails-i18n (0.7.2)
+      i18n (~> 0.5)
     railties (3.2.12)
       actionpack (= 3.2.12)
       activesupport (= 3.2.12)
@@ -164,7 +171,6 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    raindrops (0.10.0)
     rake (10.0.3)
     rb-fsevent (0.9.3)
     rdoc (3.12.1)
@@ -230,10 +236,6 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    unicorn (4.6.0)
-      kgio (~> 2.6)
-      rack
-      raindrops (~> 0.7)
     warden (1.2.1)
       rack (>= 1.0)
     websocket (1.0.7)
@@ -254,6 +256,7 @@ DEPENDENCIES
   capistrano
   capistrano-ext
   capybara
+  compass
   debugger
   devise
   factory_girl_rails
@@ -264,6 +267,7 @@ DEPENDENCIES
   kaminari
   pg
   rails (= 3.2.12)
+  rails-i18n
   rb-fsevent
   rest-client
   rspec-rails
@@ -274,4 +278,3 @@ DEPENDENCIES
   spork
   sqlite3
   uglifier (>= 1.0.3)
-  unicorn
