@@ -18,7 +18,7 @@ function updateCoordinate(){
 		else{
 			adress = "Adresse indisponible";
 		}
-		$('.adresse').html(adress);
+		$('#localisation').html(adress);
     });
 }
 
@@ -82,6 +82,15 @@ function initLocalisation(){
 	}
 }
 
+function initBigMap(){
+	$("#map_canvas").css('height',"350");
+}
+function endBigMap(){
+	$("#map_canvas").css('height',"200");
+}
+
 $(document).ready(function() {
 	initLocalisation();
+	$("#enlarge").bind("click", initBigMap);
+	$("#minimize").bind("click", endBigMap);
 });

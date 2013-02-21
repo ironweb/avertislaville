@@ -1,3 +1,6 @@
+<header class="navBar">
+  <h1>Localisation</h1>
+</header>
 <%= simple_form_for(@request, url: request_path(@request.service)) do |form| %>
   <% @request.service.ordered_attrs.each do |code, attr| %>
     <%= form.input attr.code.to_sym,
