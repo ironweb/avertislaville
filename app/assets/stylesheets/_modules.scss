@@ -7,6 +7,9 @@
     @include filter-gradient($lightGradient, $darkGradient, vertical);
     $experimental-support-for-svg: true;
     @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
+    h2{
+        margin-left:10px;
+    }
 
 }
 .formSeparator{
@@ -15,9 +18,7 @@
     padding:10px 0;
     margin:10px;
 }
-h2{
-    margin-left:10px;
-}
+
 
 ::-webkit-input-placeholder {
     color: #2c2c2c;
@@ -40,18 +41,20 @@ form{
         width:95%;
         border:0px;
         padding:5px;
-        margin:8px 0;
+        margin:10px 0;
         font-family: Helvetica, Arial, sans-serif;
         text-transform: uppercase;
         font-size: 0.75rem;
         @include border-radius(4px, 4px);
+        @include arimoBold();
         &[type="submit"]{
             color: $typoColor;
             text-transform: uppercase;
             border:1px solid $darkGradient;
             @include bebas();
-            @include border-radius(0px);
             font-size: 1.25rem;
+            margin:10px auto 30px auto;
+            width:92%;
         }
         &[type="radio"]{
             width:auto;
@@ -66,9 +69,17 @@ form{
     label, legend{
         margin-right:10px;
         @include bebas();
-        &.string, &.email, &.password, &.tel{
-            display:none;
+        display:none;
+        &.datetime, &.radio {
+            display:inline;
         }
+    }
+    p{
+        @include bebas();
+        margin:10px;
+        text-align: center;
+        padding:0 40px;
+        font-size:1rem;
     }
 }
 .map_zone{

@@ -12,14 +12,27 @@
 }
 
 @font-face {
-        font-family: 'Nevis';
-        src: url('../fonts/nevis.eot');
-        src: url('../fonts/nevis.eot?#iefix') format('embedded-opentype'),
-             url('../fonts/nevis.woff') format('woff'),
-             url('../fonts/nevis.ttf') format('truetype'),
-             url('../fonts/nevis.svg#nevis') format('svg');
-        font-weight: normal;
-        font-style: normal;
+    font-family: 'ArimoRegular';
+    src: url('../fonts/Arimo-Regular-Latin-webfont.eot');
+    src: url('../fonts/Arimo-Regular-Latin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Arimo-Regular-Latin-webfont.woff') format('woff'),
+         url('../fonts/Arimo-Regular-Latin-webfont.ttf') format('truetype'),
+         url('../fonts/Arimo-Regular-Latin-webfont.svg#ArimoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'ArimoBold';
+    src: url('../fonts/Arimo-Bold-Latin-webfont.eot');
+    src: url('../fonts/Arimo-Bold-Latin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Arimo-Bold-Latin-webfont.woff') format('woff'),
+         url('../fonts/Arimo-Bold-Latin-webfont.ttf') format('truetype'),
+         url('../fonts/Arimo-Bold-Latin-webfont.svg#ArimoBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
 @font-face {

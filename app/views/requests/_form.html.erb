@@ -7,7 +7,7 @@
   <button id="minimize" type="button"><span aria-hidden="true" data-icon="&#xe001;"></span></button>
   <div id="map_canvas"></div>
 </div>
-  <textarea id="localisation"></textarea>
+  <p id="localisation"></p>
   <div class="service-attributes">
 <div class="navBar">
       <h2><%= t('requests.information') %></h2>
@@ -39,6 +39,10 @@
   </fieldset>
   <div class="formSeparator">
     <h2><%= t('requests.membership') %></h2>
+    <input id="radio1" name="" value="yes" type="radio">
+    <label for="radio1" class="radio"><%= t('requests.yes') %></label>
+    <input id="radio2" name="" value="no" type="radio" checked="checked">
+    <label for="radio2" class="radio"><%= t('requests.no') %></label>
   </div>
   <fieldset>
     <%= form.input :password, :placeholder => t('requests.password') %>

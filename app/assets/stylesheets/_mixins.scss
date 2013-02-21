@@ -18,8 +18,8 @@
     text-transform: uppercase;
     @include single-text-shadow;
 }
-@mixin nevis(){
-	 font-family: 'Nevis', Helvetica, Arial, sans-serif;
+@mixin arimoBold(){
+	 font-family: 'ArimoBold', Helvetica, Arial, sans-serif;
     font-weight: normal;
     text-transform: uppercase;
 }
