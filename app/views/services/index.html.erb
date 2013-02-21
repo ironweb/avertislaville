@@ -1,5 +1,8 @@
-<ul>
+<header class="navBar">
+  <h1>Selectionne une requête</h1>
+</header>
+<ul class="services">
   <% @services.each do |service| %>
-    <li><%= link_to(service.name, request_path(service)) %></li>
+    <li><%= link_to(service.name, request_path(service), :class => service.name.parameterize[0..10]) %></li>
   <% end %>
 </ul>
