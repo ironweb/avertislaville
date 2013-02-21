@@ -20,6 +20,9 @@ module Open311
       @attributes = []
     end
 
+    def to_param
+      @code
+    end
   end
 
 end

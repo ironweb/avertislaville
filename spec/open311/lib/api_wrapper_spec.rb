@@ -48,6 +48,7 @@ describe Open311::ApiWrapper do
     expect(service.description).to eq("Description à venir")
     expect(service.metadata).to eq(true)
     expect(service.type).to eq("batch")
+    expect(service.to_param).to eq(service.code)
   end
 
   it "returns a service with minimal keys" do
