@@ -190,4 +190,51 @@ describe ApiWrapper do
     expect(result["Ordures"][0]).to be_an_instance_of(Service)
   end
 
+  it "returns no attributes with an empty string" do
+    resource = RestStub.new
+    attribute_json = ""
+    resource.get = attribute_json
+
+    code = "01234-1234-1234-1234"
+    wrapper = ApiWrapper.new(resource)
+    result = wrapper.attributes_from_code(code)
+
+    expect(result).to eq([])
+  end
+
+  it "returns one attribute" do
+    resource = RestStub.new
+    attribute_json = {
+       "attributes"=> [
+          {
+            "code"=>"7041ac51-ec75-e211-9483-005056a613ac",
+            "datatype"=>"text",
+            "datatype_description"=> "Pour disposer d`appareils contenant des halocarbures (congélateur, réfrigérateur, climatiseur, etc.), veuillez communiquer avec votre bureau d'arrondissement.",
+            "description"=> "Pour disposer d`appareils contenant des halocarbures (congélateur, réfrigérateur, climatiseur, etc.), veuillez communiquer avec votre bureau d'arrondissement.",
+            "order"=>2,
+            "required"=>false,
+            "values"=>[],
+            "variable"=>false
+          },
+      ]
+    }.to_json
+    resource.get = attribute_json
+
+    code = "01234-1234-1234-1234"
+    wrapper = ApiWrapper.new(resource)
+    result = wrapper.attributes_from_code(code)
+
+    expect(result.length).to eq(1)
+    attribute = result[0]
+
+    expect(attribute.code).to eq("7041ac51-ec75-e211-9483-005056a613ac")
+    expect(attribute.datatype).to eq("text")
+    expect(attribute.description).to eq("Pour disposer d`appareils contenant des halocarbures (congélateur, réfrigérateur, climatiseur, etc.), veuillez communiquer avec votre bureau d'arrondissement.")
+    expect(attribute.datatype_description).to eq("Pour disposer d`appareils contenant des halocarbures (congélateur, réfrigérateur, climatiseur, etc.), veuillez communiquer avec votre bureau d'arrondissement.")
+    expect(attribute.order).to eq(2)
+    expect(attribute.required).to eq(false)
+    expect(attribute.values).to eq([])
+    expect(attribute.variable).to eq(false)
+  end
+
 end

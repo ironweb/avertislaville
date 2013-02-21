@@ -1,5 +1,7 @@
 require 'rest-client'
 require 'json'
+require 'service'
+require 'attributes'
 
 class ApiWrapper
 
@@ -30,24 +32,17 @@ class ApiWrapper
     services.group_by { |s| s.group }
   end
 
-end
+  def attributes_from_code(code)
+    response = @resource["/services/#{code}.json"].get.strip
+    return [] if response.empty?
 
+    json_data = JSON.parse(response)
+    raw_attributes = json_data['attributes']
+    return [] if raw_attributes.empty?
 
-class Service
-  attr_reader :name
-  attr_reader :code
-  attr_reader :group
-  attr_reader :description
-  attr_reader :metadata
-  attr_reader :type
+    attributes = raw_attributes.map { |a| Attribute.new(a) }
 
-  def initialize(data)
-    @name = data['service_name']
-    @code = data['service_code']
-    @group = data['group']
-    @description = data['description']
-    @metadata = data['metadata']
-    @type = data['type']
+    return attributes
   end
 
 end
