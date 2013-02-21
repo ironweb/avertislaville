@@ -13,4 +13,4 @@ Then run :
     bundle install
     cp config/database.yml-tmp config/database.yml
     # change your config accordingly
-    rake db:create
+    bundle exec rake db:create db:schema:load db:seed
