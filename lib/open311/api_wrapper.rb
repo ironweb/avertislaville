@@ -7,13 +7,14 @@ module Open311
 
   class ApiWrapper
 
-    def self.from_url(url, jurisdiction_id=nil)
+    def self.from_url(url, api_key, jurisdiction_id=nil)
       resource = RestClient::Resource.new(url)
       return self.new(resource, jurisdiction_id)
     end
 
-    def initialize(resource, jurisdiction_id=nil)
+    def initialize(resource, api_key, jurisdiction_id=nil)
       @resource = resource
+      @api_key = api_key
       @jurisdiction_id = jurisdiction_id
     end
 
@@ -67,6 +68,13 @@ module Open311
       params = {}
       params[:jurisdiction_id] = @jurisdiction_id unless @jurisdiction_id.nil?
       return params
+    end
+
+    def send_request(request)
+      params = request.to_post_params
+      params[:api_key] = @api_key
+      response = @resource['/requests.json'].post(params)
+      return response
     end
 
   end
