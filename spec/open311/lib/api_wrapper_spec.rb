@@ -1,5 +1,6 @@
 # encoding: UTF-8
 require 'spec_helper'
+require 'open311_helper.rb'
 require 'json'
 
 class RestStub
@@ -19,39 +20,6 @@ class RestStub
 
 end
 
-min_sample_service = {
-    "service_code"=>"1934303d-7f43-e111-85e1-005056a60032",
-    "service_name"=>"Collecte des encombrants - secteur résidentiel",
-    "group"=>"Ordures",
-    "description"=>"Description à venir",
-    "metadata"=>true,
-    "type"=>"batch"
-}
-
-sample_service = {
-    "description"=>"Description à venir",
-    "group"=>"Ordures",
-    "keywords"=> "Collecte,Encombrants,Gros déchets,Grosses poubelles,Grosses vidanges,Meubles,Monstres",
-    "metadata"=>true,
-    "service_code"=>"1934303d-7f43-e111-85e1-005056a60032",
-    "service_name"=>"Collecte des encombrants - secteur résidentiel",
-    "type"=>"batch"
-}
-
-sample_attribute = {
-   "attributes"=> [
-      {
-        "code"=>"7041ac51-ec75-e211-9483-005056a613ac",
-        "datatype"=>"text",
-        "datatype_description"=> "Pour disposer d`appareils contenant des halocarbures (congélateur, réfrigérateur, climatiseur, etc.), veuillez communiquer avec votre bureau d'arrondissement.",
-        "description"=> "Pour disposer d`appareils contenant des halocarbures (congélateur, réfrigérateur, climatiseur, etc.), veuillez communiquer avec votre bureau d'arrondissement.",
-        "order"=>2,
-        "required"=>false,
-        "values"=>[],
-        "variable"=>false
-      },
-  ]
-}
 
 describe Open311::ApiWrapper do
 
