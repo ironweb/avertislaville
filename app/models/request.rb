@@ -2,9 +2,10 @@ require 'active_support/core_ext/hash/indifferent_access'
 class Request
   include ActiveAttr::Model
 
+  attribute :description
   attribute :email
-  attribute :firstname
-  attribute :name
+  attribute :first_name
+  attribute :last_name
   attribute :phone
   attribute :password
 
@@ -17,7 +18,7 @@ class Request
   end
 
   def attributes
-    super.merge(Hash[service.attrs.map { |k, v| [k.to_sym, self.send(k)] }])
+    super.merge(attrs: Hash[service.attrs.map { |k, v| [k.to_s, self.send(k)] }])
   end
 
   def method_missing(method, *args, &block)

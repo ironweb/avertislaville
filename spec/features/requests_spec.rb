@@ -75,9 +75,28 @@ describe "RequestsController", :type => :feature do
           FactoryGirl.build(:open311_attribute, :code => "phone", :datatype => "text")
         ]
         visit request_path('one_service')
-        within '.service-attributes' do
-          page.should have_selector('.control-group', :count => 2)
+        within 'fieldset:first' do
+          page.should have_selector('.control-group', :count => 3)
         end
+      end
+
+      it "submits and creates a request" do
+        stub_service [
+          FactoryGirl.build(:open311_attribute, :code => "grapher", :datatype => "string")
+        ]
+
+        RailsOpen311.stub(:api_wrapper) do
+          wrapper = Open311::ApiWrapper.from_url('http://dummy.dev', 'key')
+          double('Open311::ApiWrapper').tap do |test_double|
+            test_double.should_receive(:send_request).once()
+          end
+        end
+
+        visit request_path('one_service')
+        fill_in "request_grapher", :with => 'Tony Hawks'
+        click_button "request_submit"
+        current_path.should == services_path
+        page.should have_selector('.flash-notice')
       end
 
     end
