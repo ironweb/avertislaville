@@ -11,13 +11,13 @@ class RestStub
 
 end
 
-describe ApiWrapper do
+describe Open311::ApiWrapper do
 
   it "returns an empty list when no services" do
     resource = RestStub.new
     resource.get = ""
 
-    wrapper = ApiWrapper.new(resource)
+    wrapper = Open311::ApiWrapper.new(resource)
     expect(wrapper.services).to eq([])
   end
 
@@ -35,7 +35,7 @@ describe ApiWrapper do
 
     resource.get = service_json
 
-    wrapper = ApiWrapper.new(resource)
+    wrapper = Open311::ApiWrapper.new(resource)
     services = wrapper.services
 
     expect(services.length).to eq(1)
@@ -62,7 +62,7 @@ describe ApiWrapper do
 
     resource.get = service_json
 
-    wrapper = ApiWrapper.new(resource)
+    wrapper = Open311::ApiWrapper.new(resource)
     services = wrapper.services
 
     expect(services.length).to eq(1)
@@ -90,7 +90,7 @@ describe ApiWrapper do
 
     resource.get = service_json
 
-    wrapper = ApiWrapper.new(resource)
+    wrapper = Open311::ApiWrapper.new(resource)
 
     expect(wrapper.group_names).to eq(["Ordures"])
   end
@@ -120,7 +120,7 @@ describe ApiWrapper do
 
     resource.get = service_json
 
-    wrapper = ApiWrapper.new(resource)
+    wrapper = Open311::ApiWrapper.new(resource)
 
     result = ["Ordures"]
     expect(wrapper.group_names).to eq(result)
@@ -151,7 +151,7 @@ describe ApiWrapper do
 
     resource.get = service_json
 
-    wrapper = ApiWrapper.new(resource)
+    wrapper = Open311::ApiWrapper.new(resource)
 
     result = ["Ordures", "Trottoirs"]
     expect(wrapper.group_names).to eq(result)
@@ -182,12 +182,12 @@ describe ApiWrapper do
 
     resource.get = service_json
 
-    wrapper = ApiWrapper.new(resource)
+    wrapper = Open311::ApiWrapper.new(resource)
 
     result = wrapper.groups
     expect(result.keys).to eq(["Ordures", "Trottoirs"])
     expect(result["Ordures"]).to be_an_instance_of(Array)
-    expect(result["Ordures"][0]).to be_an_instance_of(Service)
+    expect(result["Ordures"][0]).to be_an_instance_of(Open311::Service)
   end
 
   it "returns no attributes with an empty string" do
@@ -196,7 +196,7 @@ describe ApiWrapper do
     resource.get = attribute_json
 
     code = "01234-1234-1234-1234"
-    wrapper = ApiWrapper.new(resource)
+    wrapper = Open311::ApiWrapper.new(resource)
     result = wrapper.attributes_from_code(code)
 
     expect(result).to eq([])
@@ -221,7 +221,7 @@ describe ApiWrapper do
     resource.get = attribute_json
 
     code = "01234-1234-1234-1234"
-    wrapper = ApiWrapper.new(resource)
+    wrapper = Open311::ApiWrapper.new(resource)
     result = wrapper.attributes_from_code(code)
 
     expect(result.length).to eq(1)
