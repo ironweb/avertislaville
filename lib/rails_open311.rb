@@ -12,11 +12,10 @@ module RailsOpen311
     api_config = load_config
 
     url = api_config['url']
-
-    url = api_config['url']
     jurisdiction_id = api_config['jurisdiction_id']
+    api_key = api_config['apikey']
 
-    api_wrapper = Open311::ApiWrapper.from_url(url, jurisdiction_id)
+    api_wrapper = Open311::ApiWrapper.from_url(url, api_key, jurisdiction_id)
     services = api_wrapper.services_with_attrs
 
     Rails.cache.write CACHE_KEY, services

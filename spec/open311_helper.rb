@@ -40,3 +40,12 @@ def one_attribute(opts={})
     "variable"=>false
   }.merge(opts)
 end
+
+def sample_response(opts={})
+  {
+    "account_id" => nil,
+    "service_notice" => nil,
+    "service_request_id" => nil,
+    "token" => "c5f0d6ad-59ca-44a4-86e8-a2d72708f54c"
+  }.merge(opts)
+end

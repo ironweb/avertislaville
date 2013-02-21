@@ -9,20 +9,21 @@ describe "RequestsController", :type => :feature do
     end
 
     context "with a valid service" do
-      before(:each) do
+      def stub_service(attributes)
         RequestsController.any_instance.stub(:service) do
-          service = FactoryGirl.build(:open311_service, :attrs => [
-            FactoryGirl.build(:open311_attribute, :code => "desc", :datatype => "textarea"),
-            FactoryGirl.build(:open311_attribute, :code => "phone", :datatype => "text")
-          ])
+          FactoryGirl.build(:open311_service, :attrs => attributes)
         end
       end
 
       after(:each) { RequestsController.any_instance.unstub(:service) }
 
       it "returns a form with one field per attr" do
+        stub_service [
+          FactoryGirl.build(:open311_attribute, :code => "desc", :datatype => "string"),
+          FactoryGirl.build(:open311_attribute, :code => "phone", :datatype => "text")
+        ]
         visit request_path('one_service')
-        within '#new_open311_service' do
+        within '#new_request' do
           page.should have_selector('.control-group', :count => 2)
         end
       end

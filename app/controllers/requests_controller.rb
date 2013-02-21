@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
   before_filter :validate_service, :only => [:new]
 
   def new
-    @service = service
+    @request = Request.new(service)
   end
 
   private
