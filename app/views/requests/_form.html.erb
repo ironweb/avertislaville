@@ -5,6 +5,7 @@
   <% @request.service.ordered_attrs.each do |code, attr| %>
     <%= form.input attr.code.to_sym,
       :label => attr.description,
+      :placeholder => attr.description,
       :as => "open311_#{attr.datatype}",
       :collection => attr.values,
       :label_method => lambda { |v| v['name'] },
