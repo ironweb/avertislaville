@@ -1,4 +1,5 @@
 <header class="navBar">
+  <%= link_to(t('Retour'), services_path, :class => 'navigation') %>
   <h1>Localisation</h1>
 </header>
 <%= simple_form_for(@request, url: request_path(@request.service)) do |form| %>
@@ -14,6 +15,7 @@
     </div>    
     <fieldset>
       <legend class="visuallyhidden"><%= t('requests.information') %></legend>
+      <%= form.input :description, :placeholder => t('requests.description') %>
       <% @request.service.ordered_attrs.each do |code, attr| %>
         <%= form.input attr.code.to_sym,
           :label => attr.description,
@@ -27,25 +29,12 @@
       <% end %>
     </fieldset>
   </div>
-  <div class="navBar">
+  <div class="navBar spacing">
     <h2><%= t('requests.contact') %></h2>
   </div>
   <fieldset>
     <legend class="visuallyhidden"><%= t('requests.contact') %></legend>
-    <%= form.input :first_name, :placeholder => t('requests.firstname') %>
-    <%= form.input :last_name, :placeholder => t('requests.lastname') %>
-    <%= form.input :email, :placeholder => t('requests.email') %>
-    <%= form.input :phone, :placeholder => t('requests.phone') %>
-  </fieldset>
-  <div class="formSeparator">
-    <h2><%= t('requests.membership') %></h2>
-    <input id="rbyes" name="create" value="yes" type="radio">
-    <label for="radio1" class="radio"><%= t('requests.yes') %></label>
-    <input id="rbno" name="create" value="no" type="radio" checked="checked">
-    <label for="radio2" class="radio"><%= t('requests.no') %></label>
-  </div>
-  <fieldset id="register">
-    <%= form.input :password, :placeholder => t('requests.password') %>
+    <%= form.input :email, :placeholder => t('requests.email'), :hint => 'Pour obtenir un retour sur votre demande, entrez votre courriel' %>
   </fieldset>
   <%= form.submit t('requests.submit'), :id => 'request_submit', :class => 'navBar' %>
 <% end %>

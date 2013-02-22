@@ -7,10 +7,13 @@
     @include filter-gradient($lightGradient, $darkGradient, vertical);
     $experimental-support-for-svg: true;
     @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
+    @include clearfix();
     h2{
         margin-left:10px;
     }
-
+}
+.spacing{
+    margin:15px 0 0 0;
 }
 .formSeparator{
     border-top:1px solid lighten($bgColor, 5%);
@@ -40,20 +43,19 @@ form{
     input, textarea, select{
         width:95%;
         border:0px;
-        padding:5px;
+        padding:7px;
         margin:10px 0;
         font-family: Helvetica, Arial, sans-serif;
         text-transform: uppercase;
         font-size: 0.75rem;
         @include border-radius(4px, 4px);
-        @include arimoBold();
         &[type="submit"]{
             color: $typoColor;
             text-transform: uppercase;
             border:1px solid $darkGradient;
             @include bebas();
             font-size: 1.25rem;
-            margin:10px auto 30px auto;
+            margin:20px auto 30px auto;
             width:92%;
         }
         &[type="radio"]{
@@ -61,10 +63,15 @@ form{
         }
     }
     textarea{
-        height:75px;
+        height:45px;
     }
     select{
         width:99%;
+        margin:7px 0 10px 0;
+        &.datetime{
+            width:30%;
+            margin-right:5px;
+        }
     }
     label, legend{
         margin-right:10px;
@@ -73,13 +80,27 @@ form{
         &.datetime, &.radio {
             display:inline;
         }
+        &.open311_singlevaluelist{
+            margin-top:10px;
+            display:block;
+        }
     }
     p{
-        @include bebas();
-        margin:10px;
-        text-align: center;
-        padding:0 40px;
-        font-size:1rem;
+        &#localisation{
+            @include bebas();
+            font-size:1rem;
+            text-align: center;
+            margin:10px;
+            padding:5px 10px 10px 10px;
+        }
+        &.help-block{
+            font-family: Helvetica, arial, sans-serif;
+            font-style: italic;
+            text-transform: none;
+            font-size:0.75rem;
+            margin:0 10px;
+            color: darken($typoColor, 35%);
+        }
     }
 }
 .map_zone{
@@ -109,15 +130,13 @@ form{
 #map_canvas{
     width: 100%;
     height: 200px; 
+    border-bottom:3px solid $darkGradient;
 }
 
 .invisible{
     display:none;
 }
 
-.datetime{
-    display:none;
-}
 
 // SERVICES
 .services{

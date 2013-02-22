@@ -20,11 +20,20 @@ p, label, legend{
     color: $typoColor;
 }
 a{
+    @include bebas();
+    background:darken($darkGradient, 5%);
+    color: $typoColor;
     &:link, &:visited{
-
+      text-decoration: none;
     }
     &:hover, &:active{
 
+    }
+    &.navigation{
+      float:left;
+      display:block;
+      padding:10px;
+      margin-left:10px;
     }
 }
 /*****		END OF BASIC STYLE		*****/
