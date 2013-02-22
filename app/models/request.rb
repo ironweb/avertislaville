@@ -9,10 +9,13 @@ class Request
   attribute :phone
   attribute :password
   attribute :lat
-  attribute :lon
+  attribute :long
+  attribute :device_id
+  attribute :account_id
+  attribute :media_url
 
   attr_reader :service
-  attr_writer :attrs_values
+  attr_accessor :attrs_values
 
   def initialize(service)
     @attrs_values = ActiveSupport::HashWithIndifferentAccess.new
@@ -20,7 +23,7 @@ class Request
   end
 
   def attributes
-    super.merge(attrs: Hash[service.attrs.map { |k, v| [k.to_s, self.send(k)] }])
+    super.merge("attrs" => Hash[service.attrs.map { |k, v| [k.to_s, self.send(k)]}])
   end
 
   def method_missing(method, *args, &block)
@@ -43,4 +46,26 @@ class Request
       super
     end
   end
+
+  def to_post_params
+    keys = [
+      :service_code,
+      :description,
+      :lat,
+      :long,
+      :email,
+      :device_id,
+      :account_id,
+      :first_name,
+      :last_name,
+      :phone,
+      :description,
+      :media_url,
+    ]
+
+    params = attributes.select { |k,v| !v.nil? and keys.include? k.to_sym }
+    params['service_code'] = @service.code if @service.code
+    params
+  end
+
 end

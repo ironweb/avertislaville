@@ -41,8 +41,11 @@
       <legend class="visuallyhidden"><%= t('requests.contact') %></legend>
       <%= form.input :email, :placeholder => t('requests.email') + "*", :required => true, :hint => 'Pour obtenir un retour sur votre demande, entrez votre courriel' %>
     </fieldset>
-    <%= form.input :lat, as: :hidden %>
-    <%= form.input :lon, as: :hidden %>
-    <%= form.submit t('requests.submit'), :id => 'request_submit', :class => 'navBar' %>
   </div>
+  <fieldset id="register">
+    <%= form.input :password, :placeholder => t('requests.password') %>
+  </fieldset>
+  <%= form.input :lat, as: :hidden %>
+  <%= form.input :long, as: :hidden %>
+  <%= form.submit t('requests.submit'), :id => 'request_submit', :class => 'navBar' %>
 <% end %>
