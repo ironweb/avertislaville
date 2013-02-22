@@ -26,4 +26,5 @@ services:
     name: "Lumière de rue / Ruelle - n'allume pas"
     css_class: "lumiere-de-"
     description: Lorem ipsum Lorem ipsum lumiere de rue
-
+date_prefill:
+  - f0fc0616-d4a7-e011-a970-005056a60032
