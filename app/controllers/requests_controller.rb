@@ -13,21 +13,19 @@ class RequestsController < ApplicationController
       api_wrapper = RailsOpen311.api_wrapper
       api_response = api_wrapper.send_request(@request)
 
-      unless api_response.valid?
-        redirect_to services_path, :notice => api_response.error_message
-        return
+      if api_response.valid?
+        event = create_event(api_response)
+        if event.save!
+          redirect_to services_path, :notice => I18n.t('request.success')
+          return
+        else
+          flash.now[:alert] = I18n.t('request.error')
+        end
+      else
+        flash.now[:alert] = api_response.error_message
       end
-
-      event = create_event(api_response)
-      unless event.save
-        redirect_to services_path, :notice => I18n.t('request.error')
-        return
-      end
-
-      redirect_to services_path, :notice =>I18n.t('request.success')
-    else
-      render 'new'
     end
+    render 'new'
   end
 
   private
