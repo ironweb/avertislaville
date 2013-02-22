@@ -69,17 +69,6 @@ describe "RequestsController", :type => :feature do
         (1..2).each { |i| page.should have_selector("#request_tags_key#{i}[type=checkbox]") }
       end
 
-      it "has a form with one field per attr" do
-        stub_service [
-          FactoryGirl.build(:open311_attribute, :code => "desc", :datatype => "string"),
-          FactoryGirl.build(:open311_attribute, :code => "phone", :datatype => "text")
-        ]
-        visit request_path('one_service')
-        within 'fieldset:first' do
-          page.should have_selector('.control-group', :count => 3)
-        end
-      end
-
       it "submits and creates a request" do
         stub_service [
           FactoryGirl.build(:open311_attribute, :code => "grapher", :datatype => "string")

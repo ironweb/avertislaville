@@ -17,6 +17,8 @@ function updateCoordinate(){
 		}
 		$('#localisation').html(adress);
     });
+    $("#request_lat").val(latitudeData);
+    $("#request_lon").val(longitudeData);
 }
 
 function initMap(){
