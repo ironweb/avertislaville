@@ -33,7 +33,7 @@ header{
         width:40%;
         text-align: center;
         @media screen and (min-width: $break-large) {
-            background: url(../img/logo.png) no-repeat;
+        //    background: url(../img/logo.png) no-repeat;
         }
     }
     @media screen and (min-width: $break-large) {
@@ -130,9 +130,9 @@ form{
             margin:20px auto 30px auto;
             width:92%;
             @media screen and (min-width: $break-large) {
-                width:30%;
-                margin-right:40px;
-                float:right;
+width: 30%;
+margin-left: 7%;
+float: left;
             }
         }
         &[type="radio"]{
@@ -307,9 +307,9 @@ form{
 // HOME
 .logo{
     background: url("../img/logo.png") no-repeat;
-    background-size: 270px 81px;
-    width: 270px;
-    height: 81px;
+background-size: 250px 65px;
+width: 270px;
+height: 71px;
     margin: 45px auto;
     display: block;
 }
@@ -397,8 +397,14 @@ form{
         border: none;
         @include border-radius(0px);
         background: #e4e4e4 url("../img/fondhome.jpg") no-repeat;
-        height: 209px;
-        margin-bottom: 30px;
+background: #e4e4e4 url("../img/fondhome.jpg") no-repeat 0px -90px;
+height: 89px;
+margin-bottom: 30px;
+        a{
+            color: $darkGradient;
+            background: url(../img/podium2.png) no-repeat center 15px;
+            padding: 45px 0 8px 0;
+        }
     }
     #zoneHomeMap{
         height: 355px;
