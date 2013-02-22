@@ -41,6 +41,14 @@ describe ServicesHelper do
 
   describe "service css class" do
 
+    it "generates a css class if there isn't any in metadata" do
+      config = {'services' => []}
+      RailsOpen311.stub(:load_config).and_return(config)
+
+      css_class = service_name(service)
+      css_class.should == "service-name"
+    end
+
     it "generates service css class from metadata" do
       config = {
         'services' => [{

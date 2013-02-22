@@ -3,4 +3,5 @@ Rouges::Application.routes.draw do
   get  'request/:service' => 'requests#new', :as => :request
   post 'request/:service' => 'requests#create', :as => :request
   resources 'services', only: [:index]
+  resources 'districts', only: [:index]
 end
