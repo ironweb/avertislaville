@@ -1,7 +1,11 @@
 <div class="wrapper">
     <div id="st-accordion" class="st-accordion">
         <ul>
-          <% @districts.each do |district| %>
+          <%
+            mapping = @districts.map { |d| [total_district_score(d, d.all_services), d] }
+            mapping = mapping.sort_by { |m| m[0] }.map { |m| m[1] }.reverse
+          %>
+          <% mapping.each do |district| %>
             <li>
             <%= link_to (district.name + '<span class="st-arrow">Open or Close</span>').html_safe, districts_path(district) %>
             <% services = district.all_services %>
