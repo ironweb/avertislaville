@@ -10,7 +10,6 @@
                 <ul>
                   <% services.each do |service| %>
                     <li class="<%= service_css_class(service) %>"><%= service_name(service) %>
-                      <span><%= service_score(district, service) %></span>
                     </li>
                   <% end %>
                 </ul>
