@@ -222,6 +222,10 @@ GEM
     simple_form (2.0.4)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     slop (3.4.3)
     sorted (0.4.3)
     spork (1.0.0rc3)
@@ -286,6 +290,7 @@ DEPENDENCIES
   sass-rails (~> 3.2)
   sextant
   simple_form
+  simplecov
   sorted
   spork
   sqlite3

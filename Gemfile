@@ -69,6 +69,7 @@ platform :ruby do
     gem 'rb-fsevent'
     gem 'capybara'
     gem 'factory_girl_rails'
+    gem 'simplecov', :require => false
     # Use database_cleaner if you'd like to run full webkit specs
     # gem 'database_cleaner'
     # gem 'capybara-webkit', '0.7.2'
