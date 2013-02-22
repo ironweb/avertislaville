@@ -20,9 +20,9 @@ class RequestsController < ApplicationController
 
       event = create_event(api_response)
       if event.save
-        redirect_to(services_path, :notice => I18n.t('request.success')) and return
+        redirect_to(services_path, :notice => I18n.t('requests.success')) and return
       else
-        flash.now[:alert] = I18n.t('request.error') # TODO hard error message + log
+        flash.now[:alert] = I18n.t('requests.error') # TODO hard error message + log
       end
     else
       flash.now[:alert] = I18n.t('requests.errors_in_form')
