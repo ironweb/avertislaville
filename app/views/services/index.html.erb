@@ -2,6 +2,6 @@
 <% content_for(:header_title, "Types d'anomalie") %>
 <ul class="services">
   <% @services.each do |service| %>
-    <li class="<%= service.name.parameterize[0..10] %>"><%= link_to(service.name, request_path(service)) %></li>
+    <li class="<%= service_css_class(service) %>"><%= link_to(service_name(service), request_path(service)) %></li>
   <% end %>
 </ul>
