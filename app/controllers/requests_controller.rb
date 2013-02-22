@@ -8,20 +8,24 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(service)
     @request.attributes = params[:request].except("password")
+
     if true # TODO : request.valid?
-      # TODO : Create db record in transaction
       api_wrapper = RailsOpen311.api_wrapper
       api_response = api_wrapper.send_request(@request)
 
-      if api_response.valid?
-        notice = I18n.t('request.success')
-      else
-        notice = api_response.error_message
+      if api_response.invalid?
+        flash.now[:alert] = api_response.error_message
+        render 'new' and return
       end
-      redirect_to services_path, :notice =>I18n.t('request.success')
-    else
-      render 'new'
+
+      event = create_event(api_response)
+      if event.save
+        redirect_to(services_path, :notice => I18n.t('request.success')) and return
+      else
+        flash.now[:alert] = I18n.t('request.error') # TODO hard error message + log
+      end
     end
+    render 'new' and return
   end
 
   private
@@ -35,6 +39,12 @@ class RequestsController < ApplicationController
   def service
     @service ||= RailsOpen311.filtered_services.find do |service|
       service.code == params[:service]
+    end
+  end
+
+  def create_event(api_response)
+    Event.from_request(@request).tap do |event|
+      event.token = api_response.token
     end
   end
 end

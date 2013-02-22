@@ -30,4 +30,30 @@ describe Event do
     event.lat.should == 44
     event.lon.should == 2
   end
+
+  describe "#from_request" do
+
+    context "minimal request" do
+
+      request = FactoryGirl.build(:open311_request)
+
+      subject do
+        filtered_return = [double('Service').tap { |d| d.stub(:code).and_return(request.service.code) }]
+        RailsOpen311.stub(:filtered_services).and_return(filtered_return)
+        event = Event.from_request(request)
+        event.save
+        event
+      end
+
+      it("has a latitude")  { subject.lat.should_not be_nil }
+      it("has a longitude") { subject.lon.should_not be_nil }
+      it("has a type code") { subject.type_code.should_not be_nil }
+      it("has the same latitude as request")    { subject.lat.should == request.lat }
+      it("has the same longitude as request")   { subject.lon.should == request.long }
+      it("has the same type code")              { subject.type_code.should == request.service.code }
+
+    end
+
+  end
+
 end

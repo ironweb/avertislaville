@@ -22,7 +22,7 @@ module Open311
     end
 
     def log
-      @logger ||= Logger.new(STDOUT)
+      @logger ||= Open311.logger
     end
 
     def all_services
@@ -116,4 +116,19 @@ module Open311
 
   end
 
+  def self.logger=(logger)
+    @logger = logger
+  end
+
+  def self.logger
+    @logger ||= rails_logger || default_logger
+  end
+
+  def self.rails_logger
+    defined?(::Rails) && ::Rails.respond_to?(:logger) && ::Rails.logger
+  end
+
+  def self.default_logger
+    Logger.new(STDOUT)
+  end
 end

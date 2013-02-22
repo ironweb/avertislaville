@@ -15,6 +15,26 @@ describe "RequestsController", :type => :feature do
         end
       end
 
+      def stub_filtered_services
+        service_code = FactoryGirl.build(:open311_service).code
+        filtered_return = [double('Service').tap do |d|
+          d.stub(:code).and_return(service_code)
+          d.stub(:name).and_return("name")
+        end]
+        RailsOpen311.stub(:filtered_services).and_return(filtered_return)
+      end
+
+      def stub_api_wrapper
+        RailsOpen311.stub(:api_wrapper) do
+          wrapper = Open311::ApiWrapper.from_url('http://dummy.dev', 'key')
+          double('Open311::ApiWrapper').tap do |test_double|
+            test_double.should_receive(:send_request).once() do
+              FactoryGirl.build(:open311_response)
+            end
+          end
+        end
+      end
+
       after(:each) { RequestsController.any_instance.unstub(:service) }
 
       it "has input type text for string" do
@@ -74,12 +94,8 @@ describe "RequestsController", :type => :feature do
           FactoryGirl.build(:open311_attribute, :code => "grapher", :datatype => "string")
         ]
 
-        RailsOpen311.stub(:api_wrapper) do
-          wrapper = Open311::ApiWrapper.from_url('http://dummy.dev', 'key')
-          double('Open311::ApiWrapper').tap do |test_double|
-            test_double.should_receive(:send_request).once()
-          end
-        end
+        stub_api_wrapper
+        stub_filtered_services
 
         visit request_path('one_service')
         fill_in "request_grapher", :with => 'Tony Hawks'
@@ -88,6 +104,23 @@ describe "RequestsController", :type => :feature do
         page.should have_selector('.flash-notice')
       end
 
+      it "submits and create an event" do
+        stub_service [
+          FactoryGirl.build(:open311_attribute, :code => "grapher", :datatype => "string")
+        ]
+
+        stub_api_wrapper
+        stub_filtered_services
+
+
+        visit request_path('one_service')
+        fill_in "request_grapher", :with => 'Tony Hawks'
+        click_button "request_submit"
+        current_path.should == services_path
+        page.should have_selector('.flash-notice')
+
+        Event.all.count.should == 1
+      end
     end
   end
 end
