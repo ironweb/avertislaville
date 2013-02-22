@@ -8,7 +8,11 @@ module ServicesHelper
 
   def service_name(service)
     config = service_config(service.code)
-    return config['name'] if config.include? 'name' else service.name
+    if config.include? 'name'
+      config['name']
+    else
+      service.name
+    end
   end
 
   def service_css_class(service)
