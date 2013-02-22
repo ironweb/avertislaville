@@ -1,5 +1,5 @@
 function initHomeMap (coords){
-	$("h1.logo").after("<div id='zoneHomeMap'><div id='homeMap'></div><div id='mask'></div></div>");
+	$("h1.logozone").after("<div id='zoneHomeMap'><div id='homeMap'></div><div id='mask'></div></div>");
 	var imgmarker='../img/marker.png';
 	var objectMarker = coords.map(function(coord) {
 		return { latitude: coord.lat, longitude: coord.lon, icon: imgmarker};

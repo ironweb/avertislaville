@@ -310,6 +310,7 @@ form{
     width: 270px;
     height: 81px;
     margin: 45px auto;
+    display: block;
 }
 .callAction a{
     display: block;
@@ -364,6 +365,17 @@ form{
         width:40%;
         float:left;
         margin-left:9%;
+    }
+    .controller-home{.navBar{display:none}}
+    .logozone{
+           @include filter-gradient($lightGradient, $darkGradient, vertical);
+            $experimental-support-for-svg: true;
+            @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
+            padding: 15px 0;
+    }
+    .logo{
+    margin: 0px auto 45px;
+    display: block;
     }
 
     #zoneHomeMap{
