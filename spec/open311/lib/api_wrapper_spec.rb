@@ -291,7 +291,7 @@ describe Open311::ApiWrapper do
 
     wrapper = Open311::ApiWrapper.new(resource, api_key)
     response = wrapper.send_request(request)
-    response.error?.should == true
+    response.invalid?.should == true
     response.error_message.should == "'api_key' : L'argument ne peut pas \xC3\xAAtre null ou vide."
   end
 

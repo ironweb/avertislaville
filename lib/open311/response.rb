@@ -13,7 +13,7 @@ module Open311
       error_message.nil?
     end
 
-    def error?
+    def invalid?
       !valid?
     end
 
