@@ -233,7 +233,7 @@ describe Open311::ApiWrapper do
   end
 
   it "sends a request to the api" do
-    resource = PostStub.new(sample_response.to_json)
+    resource = PostStub.new([sample_response].to_json)
     request = FactoryGirl.build(:open311_request)
 
     wrapper = Open311::ApiWrapper.new(resource, api_key)
@@ -250,7 +250,7 @@ describe Open311::ApiWrapper do
   end
 
   it "sends a request with attributes to the api" do
-    resource = PostStub.new(sample_response.to_json)
+    resource = PostStub.new([sample_response].to_json)
     request = FactoryGirl.build(:open311_request)
     request.attrs_values = {
       '1234-1234-1234-1234' => '2345-2345-2345-2345',
@@ -273,7 +273,7 @@ describe Open311::ApiWrapper do
   end
 
   it "returns a response when sending a request" do
-    resource = PostStub.new(sample_response.to_json)
+    resource = PostStub.new([sample_response].to_json)
     request = FactoryGirl.build(:open311_request)
     wrapper = Open311::ApiWrapper.new(resource, api_key)
 
@@ -286,7 +286,7 @@ describe Open311::ApiWrapper do
   end
 
   it "raises an exception when api returns a 400 error" do
-    resource = ErrorStub.new(sample_response.to_json)
+    resource = ErrorStub.new([sample_response].to_json)
     request = FactoryGirl.build(:open311_request)
 
     wrapper = Open311::ApiWrapper.new(resource, api_key)

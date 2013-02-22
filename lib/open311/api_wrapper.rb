@@ -83,19 +83,28 @@ module Open311
     end
 
     def send_request(request)
+      log.info "sending request #{request}"
+
       params = request.to_post_params
       params['api_key'] = @api_key
-      @resource['/requests.json'].post(params) do |response|
-        if response.code.to_i >= 400
-          return parse_error_response(response.body)
+      log.debug "params #{params}"
+
+      response = @resource['/requests.json'].post(params) do |http_response|
+        log.debug "RESPONSE #{http_response.code} #{http_response.body}"
+        if http_response.code.to_i >= 400
+          parse_error_response(http_response.body)
+        else
+          parse_post_response(http_response.body)
         end
-        return parse_post_response(response.body)
       end
+
+      log.info "response #{response}"
+      return response
     end
 
     def parse_post_response(body)
       json_response = JSON.parse(body)
-      return Response.new(json_response)
+      return Response.new(json_response.first)
     end
 
     def parse_error_response(body)
