@@ -5,7 +5,7 @@ module RailsOpen311
   CACHE_KEY = 'open311_services'
 
   def self.load_config
-    YAML.load_file(CONFIG_PATH)
+    YAML.load(ERB.new(IO.read(CONFIG_PATH)).result)
   end
 
   def self.load_all_services!
