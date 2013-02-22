@@ -1,11 +1,5 @@
-<header class="navBar shadow">
-  <div>
-    <%= link_to(t('nav.back'), '/', :class => 'navigation') %>
-  </div>
-  <h1>Localisation</h1>
-  <div>
-  </div>
-</header>
+<% content_for(:back_url, '/') %>
+<% content_for(:header_title, "Types d'anomalie") %>
 <ul class="services">
   <% @services.each do |service| %>
     <li class="<%= service.name.parameterize[0..10] %>"><%= link_to(service.name, request_path(service)) %></li>

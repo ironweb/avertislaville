@@ -20,6 +20,14 @@
   </script>
 </head>
 <body>
+
+
+<header class="navBar shadow">
+  <div><%= link_to(t('nav.back'), content_for(:back_url), :class => 'navigation') %></div>
+  <h1><%= content_for(:header_title) %></h1>
+  <div></div>
+</header>
+
   <% [:alert, :error, :notice].each do |key| %>
     <% if flash[key] %>
       <div class="flash flash-<%= key %>" data-alert="alert"><%= flash[key] %></div>
@@ -27,5 +35,6 @@
   <% end %>
 
   <%= yield %>
+
 </body>
 </html>
