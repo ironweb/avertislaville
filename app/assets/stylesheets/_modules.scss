@@ -253,8 +253,10 @@ float: left;
 .services{
     width: 100%;
     @media screen and (min-width: $break-large) {
-        width:80%;
+        width:70%;
         margin:auto;
+        margin-top: 55px;
+        display: table;
     }
     li{
         float: left;
@@ -264,9 +266,12 @@ float: left;
         background-color: #ccc;
         background-position: center bottom;
         @media screen and (min-width: $break-large) {
-            padding:10% 0;
-            width:48%;
-            margin:0 1% 2% 1%;
+            display: inline-table;
+            @include clearfix;
+            padding:5% 0 8% 0;
+            width:44%;
+            margin:0 3% 4% 3%;
+            @include box-shadow(rgba(0, 0, 0, 0.3) 2px 2px 8px);
         }
     }
     a{
@@ -279,6 +284,21 @@ float: left;
         color: #ffffff;
         font-size: 22px;
         text-decoration: none;
+        p {
+          display: none;
+          @media screen and (min-width: $break-large) {
+            line-height: 1.1rem;
+            display: block;
+            text-transform: none;
+            padding: 4% 10%;
+            font-size: 0.8rem;
+            font-family: Helvetica, Arial, sans-serif;
+          }
+        }
+
+        @media screen and (min-width: $break-large) {
+          height: auto;
+        }
     }
     .nid{
         background-color: #2d2d2d;

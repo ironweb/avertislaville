@@ -3,6 +3,7 @@ body{
     font-size: 16px;
     font-size: 1em;
     background-color:$bgColor;
+    font-family: Helvetica, Arial, sans-serif;
     &.controller-home{
         background: $bgColor url("../img/fondquebec.png") no-repeat 0px 30px fixed;
         -webkit-background-size: cover;
