@@ -1,5 +1,3 @@
-require 'open311_helper'
-
 describe "RequestsController", :type => :feature do
   describe "GET new" do
     context "with invalid service" do
