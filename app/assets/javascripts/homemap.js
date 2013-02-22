@@ -25,5 +25,5 @@ $(document).on('homemap:ready', function(e, coords) {
 		}
 	})
 	$(window).trigger('resize.homemap');
-	$(document).on('page:change', function() { $(window.off('.homemap')); });
+	$(document).on('page:change', function() { $(window).off('.homemap'); });
 });
