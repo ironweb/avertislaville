@@ -18,8 +18,6 @@
 
 header{
     position:relative;
-    z-index:1000;
-    @include box-shadow(rbga(0,0,0,0.75), 0px, 2px, 6px, 0px);
     div{
         width:30%;
         &:first-child{
@@ -205,7 +203,6 @@ form{
 }
 .map_zone{
     position: relative;
-    z-index:1;
     button{
         position: absolute;
         z-index: 10;
