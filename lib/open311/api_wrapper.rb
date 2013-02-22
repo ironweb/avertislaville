@@ -2,14 +2,17 @@ require 'rest-client'
 require 'json'
 require 'open311/service'
 require 'open311/attribute'
+require 'logger'
 
 module Open311
 
   class ApiWrapper
 
+    attr_accessor :logger
+
     def self.from_url(url, api_key, jurisdiction_id=nil)
       resource = RestClient::Resource.new(url)
-      return self.new(resource, jurisdiction_id)
+      return self.new(resource, api_key, jurisdiction_id)
     end
 
     def initialize(resource, api_key, jurisdiction_id=nil)
@@ -18,7 +21,12 @@ module Open311
       @jurisdiction_id = jurisdiction_id
     end
 
+    def log
+      @logger ||= Logger.new(STDOUT)
+    end
+
     def all_services
+      log.info "querying list of services"
       response = query_service('/services.json')
       return [] if response.empty?
 
@@ -37,6 +45,7 @@ module Open311
     end
 
     def attrs_from_code(code)
+      log.info "querying attributes for service #{code}"
       url = "/services/#{code}.json"
       response = query_service(url)
       return [] if response.empty?
@@ -51,6 +60,7 @@ module Open311
     end
 
     def services_with_attrs
+      log.info "querying all services and attributes"
       services = all_services.map do |service|
         service.attrs = attrs_from_code(service.code)
         service
@@ -60,7 +70,9 @@ module Open311
 
     def query_service(path)
       params = build_params
+      log.debug "GET #{path}"
       response = @resource[path].get(params)
+      log.debug "RESPONSE #{response}"
       return response.strip
     end
 
