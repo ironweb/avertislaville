@@ -2,17 +2,17 @@
   <h1>Localisation</h1>
 </header>
 <%= simple_form_for(@request, url: request_path(@request.service)) do |form| %>
-<div class="map_zone">
-  <button id="enlarge" type="button"><span aria-hidden="true" data-icon="&#xe000;"></span></button>
-  <button id="minimize" type="button"><span aria-hidden="true" data-icon="&#xe001;"></span></button>
-  <div id="map_canvas"></div>
-</div>
+  <div class="map_zone">
+    <button id="enlarge" type="button"><span aria-hidden="true" data-icon="&#xe000;"></span></button>
+    <button id="minimize" type="button"><span aria-hidden="true" data-icon="&#xe001;"></span></button>
+    <div id="map_canvas"></div>
+  </div>
   <p id="localisation"></p>
   <div class="service-attributes">
-<div class="navBar">
+    <div class="navBar">
       <h2><%= t('requests.information') %></h2>
     </div>    
-<fieldset>
+    <fieldset>
       <legend class="visuallyhidden"><%= t('requests.information') %></legend>
       <% @request.service.ordered_attrs.each do |code, attr| %>
         <%= form.input attr.code.to_sym,
@@ -27,10 +27,10 @@
       <% end %>
     </fieldset>
   </div>
- <div class="navBar">
+  <div class="navBar">
     <h2><%= t('requests.contact') %></h2>
-  </div>  
-<fieldset>
+  </div>
+  <fieldset>
     <legend class="visuallyhidden"><%= t('requests.contact') %></legend>
     <%= form.input :first_name, :placeholder => t('requests.firstname') %>
     <%= form.input :last_name, :placeholder => t('requests.lastname') %>
@@ -47,5 +47,5 @@
   <fieldset id="register">
     <%= form.input :password, :placeholder => t('requests.password') %>
   </fieldset>
-      <%= form.submit t('requests.submit'), :id => 'request_submit', :class => 'navBar' %>
+  <%= form.submit t('requests.submit'), :id => 'request_submit', :class => 'navBar' %>
 <% end %>
