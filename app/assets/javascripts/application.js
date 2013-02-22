@@ -11,6 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery_ujs
+//= require turbolinks
+//= require jquery.turbolinks
 //= require geo
 //= require gomap
 //= require_tree .
