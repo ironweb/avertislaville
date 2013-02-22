@@ -16,6 +16,8 @@ Then run :
     cp config/open311.yml-tmp config/open311.yml
     # change your open311 config accordingly
     bundle exec rake db:create db:schema:load db:seed
+    # Want some sample for home?
+    bundle exec rake db:sample
 
 ## Deploy
 
