@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222011634) do
+ActiveRecord::Schema.define(:version => 20130222080020) do
 
   create_table "areas", :force => true do |t|
     t.string  "name", :limit => 50
@@ -31,9 +31,16 @@ ActiveRecord::Schema.define(:version => 20130222011634) do
 
   create_table "events", :force => true do |t|
     t.string   "type_code"
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
-    t.spatial  "lonlat",     :limit => {:srid=>0, :type=>"point"}
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+    t.spatial  "lonlat",      :limit => {:srid=>0, :type=>"point"}
+    t.string   "token"
+    t.integer  "district_id"
+    t.integer  "area_id"
   end
+
+  add_index "events", ["area_id"], :name => "index_events_on_area_id"
+  add_index "events", ["district_id"], :name => "index_events_on_district_id"
+  add_index "events", ["token"], :name => "index_events_on_token"
 
 end
