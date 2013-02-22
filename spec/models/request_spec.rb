@@ -1,11 +1,11 @@
-describe Request do
+describe Open311::Request do
 
   describe "responds to method missing" do
 
     subject do
       service = FactoryGirl.build(:open311_service, attrs: [
         FactoryGirl.build(:open311_attribute, :code => "some_attribute")])
-      Request.new(service)
+      Open311::Request.new(service)
     end
     it { should respond_to(:some_attribute) }
     it { should respond_to(:some_attribute=) }
@@ -34,7 +34,7 @@ describe Request do
       service = FactoryGirl.build(:open311_service)
       service.code = "1234"
 
-      request = Request.new(service)
+      request = Open311::Request.new(service)
       request.lat = 12.23
       request.long = 23.34
 
@@ -66,7 +66,7 @@ describe Request do
         'media_url' => "http://url"
       }
 
-      request = Request.new(service)
+      request = Open311::Request.new(service)
       params.except('service_code').each do |key, value|
         request.send("#{key}=", value)
       end
@@ -78,7 +78,7 @@ describe Request do
       service = FactoryGirl.build(:open311_service)
       service.code = "1234"
 
-      request = Request.new(service)
+      request = Open311::Request.new(service)
       request.lat = 12.34
       request.long = 23.45
       request.attrs_values['value1'] = "param1"

@@ -2,11 +2,11 @@ class RequestsController < ApplicationController
   before_filter :validate_service, :only => [:new, :create]
 
   def new
-    @request = Request.new(service)
+    @request = Open311::Request.new(service)
   end
 
   def create
-    @request = Request.new(service)
+    @request = Open311::Request.new(service)
     @request.attributes = params[:request].except("password")
 
     if true # TODO : request.valid?

@@ -1,4 +1,4 @@
-<%= simple_form_for(@request, url: request_path(@request.service)) do |form| %>
+<%= simple_form_for(@request, :as => 'request', :url => request_path(@request.service)) do |form| %>
   <div class="map_zone">
     <button id="enlarge" type="button"><span aria-hidden="true" data-icon="&#xe000;"></span></button>
     <button id="minimize" type="button"><span aria-hidden="true" data-icon="&#xe001;"></span></button>

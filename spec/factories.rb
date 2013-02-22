@@ -24,7 +24,7 @@ FactoryGirl.define do
     variable false
   end
 
-  factory :open311_request, :class => 'Request' do
+  factory :open311_request, :class => 'Open311::Request' do
     ignore do
       service :nil
     end
@@ -35,7 +35,7 @@ FactoryGirl.define do
     initialize_with { new(FactoryGirl.build(:open311_service)) }
   end
 
-  factory :open311_request_full, :class => 'Request' do
+  factory :open311_request_full, :class => 'Open311Request' do
     ignore do
       service :nil
     end
