@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130222011634) do
 
   create_table "areas", :force => true do |t|
     t.string  "name", :limit => 50
     t.decimal "area"
-    t.spatial "geom", :limit => {:srid=>0, :type=>"multi_polygon", :has_m=>true, :has_z=>true}
+    t.spatial "geom", :limit => {:srid=>0, :type=>"multi_polygon", :has_z=>true}
   end
 
   add_index "areas", ["geom"], :name => "areas_geom_idx", :spatial => true
@@ -28,5 +28,12 @@ ActiveRecord::Schema.define(:version => 0) do
   end
 
   add_index "districts", ["geom"], :name => "districts_geom_idx", :spatial => true
+
+  create_table "events", :force => true do |t|
+    t.string   "type_code"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+    t.spatial  "lonlat",     :limit => {:srid=>0, :type=>"point"}
+  end
 
 end
