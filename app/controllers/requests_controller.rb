@@ -25,7 +25,7 @@ class RequestsController < ApplicationController
         flash.now[:alert] = I18n.t('request.error') # TODO hard error message + log
       end
     else
-      flash.now[:alert] = I18n.t('request.errors_in_form')
+      flash.now[:alert] = I18n.t('requests.errors_in_form')
     end
     render 'new'
   end
