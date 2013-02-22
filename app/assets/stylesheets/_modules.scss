@@ -330,6 +330,33 @@ form{
     @include background-image(linear-gradient(top,  $lightSecondGradient 0%,$lightSecondGradient 44%,$darkSecondGradient 100%));
 }
 
+.districts {
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    font-size:25px;
+    margin-top:10px;
+    @include border-radius(8px);
+    border:2px solid lighten($lightGradient, 5%);
+    @include bebas();
+    @include text-shadow(rgba($darkGradient, 0.2) 1px 1px 0, rgba($darkGradient, 0.2) 2px 2px 0, rgba($darkGradient, 0.2) 3px 3px 0);
+    background-color: $lightGradient;
+    @include filter-gradient($lightGradient, $darkGradient, vertical);
+    $experimental-support-for-svg: true;
+    @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
+    a{
+        display:block;
+        width:100%;
+        height:100%;
+        color:#ffffff;
+        text-align: center;
+        padding: 35px 0 8px 0;
+        text-decoration: none;
+        background:url(../img/podium.png) no-repeat center 5px;
+    }
+}
+
+
 
 
 @media screen and (min-width: $break-large) {
