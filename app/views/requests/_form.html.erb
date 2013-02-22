@@ -1,6 +1,10 @@
 <header class="navBar">
-  <%= link_to(t('Retour'), services_path, :class => 'navigation') %>
+  <div>
+    <%= link_to(t('Retour'), services_path, :class => 'navigation') %>
+  </div>
   <h1>Localisation</h1>
+  <div>
+  </div>
 </header>
 <%= simple_form_for(@request, url: request_path(@request.service)) do |form| %>
   <div class="map_zone">
@@ -11,7 +15,7 @@
   <p id="localisation"></p>
   <div class="service-attributes">
     <div class="navBar">
-      <h2><%= t('requests.information') %></h2>
+      <h2><%= '• ' + t('requests.information') %></h2>
     </div>    
     <fieldset>
       <legend class="visuallyhidden"><%= t('requests.information') %></legend>
@@ -30,11 +34,11 @@
     </fieldset>
   </div>
   <div class="navBar spacing">
-    <h2><%= t('requests.contact') %></h2>
+    <h2><%= '• ' + t('requests.contact') %></h2>
   </div>
   <fieldset>
     <legend class="visuallyhidden"><%= t('requests.contact') %></legend>
-    <%= form.input :email, :placeholder => t('requests.email'), :hint => 'Pour obtenir un retour sur votre demande, entrez votre courriel' %>
+    <%= form.input :email, :placeholder => t('requests.email') + "*", :required => true, :hint => 'Pour obtenir un retour sur votre demande, entrez votre courriel' %>
   </fieldset>
   <%= form.input :lat, as: :hidden %>
   <%= form.input :lon, as: :hidden %>

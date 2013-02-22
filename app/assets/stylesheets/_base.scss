@@ -14,27 +14,13 @@ h1, h2, h3, h4, h5, h6{
     font-size: 1.25rem;
 }
 h1{
+    display: block;
+    line-height:37px;
+    margin:auto;
     text-align:center;
 }
 p, label, legend{
     color: $typoColor;
-}
-a{
-    @include bebas();
-    background:darken($darkGradient, 5%);
-    color: $typoColor;
-    &:link, &:visited{
-      text-decoration: none;
-    }
-    &:hover, &:active{
-
-    }
-    &.navigation{
-      float:left;
-      display:block;
-      padding:10px;
-      margin-left:10px;
-    }
 }
 /*****		END OF BASIC STYLE		*****/
 
