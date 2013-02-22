@@ -27,4 +27,26 @@ module ServicesHelper
     return service.description
   end
 
+  def service_input(form, code, attr)
+    html = form.input(attr.code.to_sym,
+      :label => attr.description,
+      :placeholder => attr.description,
+      :as => "open311_#{attr.datatype}",
+      :collection => attr.values,
+      :label_method => lambda { |v| v['name'] },
+      :value_method => lambda { |v| v['key'] },
+      :required => attr.required,
+      :input_html => { value: nil })
+
+    #TODO: Find a cleaner way of deactivating the input than just hiding and submitting
+    if prefill_date_input(code)
+      return "<div class='hidden'>#{html}</div>".html_safe
+    end
+    return html
+  end
+
+  def prefill_date_input(code)
+    RailsOpen311.load_config['date_prefill'].include? code
+  end
+
 end
