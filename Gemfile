@@ -21,16 +21,8 @@ end
 gem 'jquery-rails'
 
 # Use devise for Auth
-gem "devise"
-
-# Kaminari for paging
-gem "kaminari"
-
-# DRY ressources (used for admin)
-gem 'inherited_resources'
-
-# Sorted for sorting
-gem 'sorted'
+# Unused for now
+# gem "devise"
 
 # Deploy with Capistrano
 gem 'capistrano'
@@ -42,7 +34,6 @@ gem 'simple_form'
 gem 'rest-client'
 
 gem 'active_attr'
-gem 'compass'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
