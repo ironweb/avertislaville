@@ -2,5 +2,28 @@ url: __YOUR_API_URL__
 apikey: __YOUR_API_KEY__
 jurisdiction_id: __YOUR_JURISDICTION_ID__
 services:
-    - __SERVICE_GUID1__
-    - __SERVICE_GUID2__
+  #trottoirs
+  -
+    service_code: af8d7325-f38d-e011-8ae3-005056a60032
+    name: Trottoir à réparerrrrrr
+    css_class: "trotoir-a-"
+    description: Lorem ipsum trottoir
+  #nid de poule
+  -
+    service_code: e29f025a-cda7-e011-a970-005056a60032
+    name: Nid-De-Poule
+    css_class: nid-de-poul
+    description: Lorem ipsum nid de poule
+  #chausée privée
+  -
+    service_code: f0fc0616-d4a7-e011-a970-005056a60032
+    name: Rue mal déneigée
+    css_class: rue-mal-den
+    description: Lorem ipsum rue mal déneigée
+  #lumière de rue
+  -
+    service_code: ea56374a-5974-e111-9b03-005056a60032
+    name: "Lumière de rue / Ruelle - n'allume pas"
+    css_class: "lumiere-de-"
+    description: Lorem ipsum Lorem ipsum lumiere de rue
+
