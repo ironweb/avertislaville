@@ -99,6 +99,15 @@ describe Open311::Request do
     it "responds to valid?" do
       FactoryGirl.build(:open311_service).should respond_to(:valid?)
     end
+
+    it "validates required attributes" do
+      required_attr = FactoryGirl.build(:open311_attribute, required: true)
+      service = FactoryGirl.build(:open311_service, :attrs => [required_attr])
+
+      request = Open311::Request.new(service)
+      request.valid?.should be_false
+      request.errors.should have_key(required_attr.code.to_sym)
+    end
   end
 
 end
