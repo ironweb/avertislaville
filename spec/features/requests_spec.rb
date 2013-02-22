@@ -89,6 +89,21 @@ describe "RequestsController", :type => :feature do
         (1..2).each { |i| page.should have_selector("#request_tags_key#{i}[type=checkbox]") }
       end
 
+      it "stays on the same page and show error if form is invalid" do
+        stub_service [
+          FactoryGirl.build(:open311_attribute, :code => "grapher", :datatype => "string")
+        ]
+
+        stub_api_wrapper
+        stub_filtered_services
+
+        path = request_path(FactoryGirl.build(:open311_service).code)
+        visit path
+        click_button "request_submit"
+        current_path.should == path
+        page.should have_selector('.flash-alert')
+      end
+
       it "submits and creates a request" do
         stub_service [
           FactoryGirl.build(:open311_attribute, :code => "grapher", :datatype => "string")
@@ -97,24 +112,10 @@ describe "RequestsController", :type => :feature do
         stub_api_wrapper
         stub_filtered_services
 
-        visit request_path('one_service')
-        fill_in "request_grapher", :with => 'Tony Hawks'
-        click_button "request_submit"
-        current_path.should == services_path
-        page.should have_selector('.flash-notice')
-      end
-
-      it "submits and create an event" do
-        stub_service [
-          FactoryGirl.build(:open311_attribute, :code => "grapher", :datatype => "string")
-        ]
-
-        stub_api_wrapper
-        stub_filtered_services
-
 
         visit request_path('one_service')
         fill_in "request_grapher", :with => 'Tony Hawks'
+        fill_in "request_email", :with => 'graph@reporter.com'
         click_button "request_submit"
         current_path.should == services_path
         page.should have_selector('.flash-notice')

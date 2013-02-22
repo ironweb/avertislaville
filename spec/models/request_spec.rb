@@ -95,5 +95,11 @@ describe Open311::Request do
 
   end
 
+  describe "validations" do
+    it "responds to valid?" do
+      FactoryGirl.build(:open311_service).should respond_to(:valid?)
+    end
+  end
+
 end
 

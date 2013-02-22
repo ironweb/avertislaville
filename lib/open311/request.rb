@@ -33,6 +33,8 @@ module Open311
       :media_url,
     ]
 
+    # TODO : Move out of Open311 to our app -> not required by the spec
+    validates :email, :presence => true
     def initialize(service)
       @attrs_values = ActiveSupport::HashWithIndifferentAccess.new
       @service = service
@@ -55,7 +57,7 @@ module Open311
       end
     end
 
-    def respond_to?(method)
+    def respond_to?(method, include_private=false)
       if service.attrs.has_key?(method.to_s.gsub(/=$/, ''))
         true
       else

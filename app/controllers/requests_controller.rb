@@ -9,7 +9,7 @@ class RequestsController < ApplicationController
     @request = Open311::Request.new(service)
     @request.attributes = params[:request].except("password")
 
-    if true # TODO : request.valid?
+    if @request.valid?
       api_wrapper = RailsOpen311.api_wrapper
       api_response = api_wrapper.send_request(@request)
 
@@ -24,8 +24,10 @@ class RequestsController < ApplicationController
       else
         flash.now[:alert] = I18n.t('request.error') # TODO hard error message + log
       end
+    else
+      flash.now[:alert] = I18n.t('request.errors_in_form')
     end
-    render 'new' and return
+    render 'new'
   end
 
   private
