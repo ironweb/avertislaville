@@ -9,7 +9,8 @@ function updateCoordinate(){
 	geocoder.geocode({'latLng':latLngTemp}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			if (results[0]) {
-				adress=results[0].formatted_address;
+				var adress = results[0].formatted_address.split(', ');
+				adress = adress.splice(0, 1) + '<br>' + adress.splice(1).join(', ')
 			}
 		}
 		else{

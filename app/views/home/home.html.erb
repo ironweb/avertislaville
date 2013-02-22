@@ -1,6 +1,9 @@
-<h1 class="logo"><span class="visuallyhidden"><%= t('app_title') %></span></h1>
+<h1 class="logozone"><span class="logo"></span><span class="visuallyhidden"><%= t('app_title') %></span></h1>
+
 <div class="callAction"><%= link_to(t('home.signal'), services_path) %></div>
 <div class="districts"><%= link_to(t('districts.signal'), districts_path) %></div>
 <script type="text/javascript">
-  var eventsCoords = <%= @events.html_safe %>;
+  $(function() {
+    $(document).trigger('homemap:ready', [<%= @events.html_safe %>]);
+  });
 </script>

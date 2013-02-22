@@ -156,6 +156,7 @@ form{
     select{
         width:99%;
         margin:7px 0 10px 0;
+        height: 24px;
         &.datetime{
             width:30%;
             margin-right:5px;
@@ -310,6 +311,7 @@ form{
     width: 270px;
     height: 81px;
     margin: 45px auto;
+    display: block;
 }
 .callAction a{
     display: block;
@@ -365,6 +367,17 @@ form{
         float:left;
         margin-left:9%;
     }
+    .controller-home{.navBar{display:none}}
+    .logozone{
+           @include filter-gradient($lightGradient, $darkGradient, vertical);
+            $experimental-support-for-svg: true;
+            @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
+            padding: 15px 0;
+    }
+    .logo{
+    margin: 0px auto 45px;
+    display: block;
+    }
 
     #zoneHomeMap{
         height: 355px;
@@ -392,6 +405,27 @@ form{
         float:right;
         margin-right:9%;
     }
+}
+
+// ALERTS
+
+.flash {
+  padding: 8px 35px 8px 14px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+}
+
+.flash-notice {
+  color: #468825;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.flash-alert {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
 }
 
 

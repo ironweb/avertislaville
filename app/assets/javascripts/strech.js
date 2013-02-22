@@ -5,7 +5,6 @@ function initStrech() {
 	var heightContent = viewportHeight-headerHeight;
 	if(heightContent>320){
 		$(".services a").css({'height' : (heightContent/6), 'padding-top' : (heightContent/6)*2, 'background-position' : 'center '+((heightContent/6)-20)+"px"});
-		console.log("chaage");
 	}
 }
 
