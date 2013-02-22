@@ -1,7 +1,8 @@
 function initHomeMap (){
 	$("h1.logo").after("<div id='zoneHomeMap'><div id='homeMap'></div><div id='mask'></div></div>");
+	var imgmarker='../img/marker.png';
 	var objectMarker = eventsCoords.map(function(coord) {
-		return { latitude: coord.lat, longitude: coord.lon };
+		return { latitude: coord.lat, longitude: coord.lon, icon: imgmarker};
 	});
 	$("#homeMap").goMap({
         navigationControl: false,

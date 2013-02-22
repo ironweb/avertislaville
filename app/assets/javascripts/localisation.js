@@ -32,7 +32,8 @@ function initMap() {
 			latitude: latitudeData,
 			longitude: longitudeData,
 			draggable: true,
-			id: 'testMarker'
+			id: 'testMarker',
+			icon: '../img/marker.png'
 		}]
 	});
 	geocoder = new google.maps.Geocoder();
