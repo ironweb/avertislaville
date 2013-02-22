@@ -45,7 +45,7 @@ describe ServicesHelper do
       config = {'services' => []}
       RailsOpen311.stub(:load_config).and_return(config)
 
-      css_class = service_name(service)
+      css_class = service_css_class(service)
       css_class.should == "service-name"
     end
 

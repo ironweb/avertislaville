@@ -13,7 +13,8 @@ module ServicesHelper
 
   def service_css_class(service)
     config = service_config(service.code)
-    return config['css_class']
+    return config['css_class'] if config.include? 'css_class'
+    return service.name.parameterize
   end
 
 end
