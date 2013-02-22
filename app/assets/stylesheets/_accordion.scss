@@ -17,8 +17,8 @@
     &:first-child {
       border-top: none; }
     > a {
-      font-family: 'Josefin Slab',Georgia, serif;
-      text-shadow: 1px 1px 1px #fff;
+      @include bebas();
+      text-shadow: 1px 1px 1px #000;
       font-size: 46px;
       display: block;
       position: relative;
@@ -29,8 +29,12 @@
       -o-transition: color 0.2s ease-in-out;
       -ms-transition: color 0.2s ease-in-out;
       transition: color 0.2s ease-in-out;
+      &:link, &:visited{
+        color: $typoColor;
+        text-decoration: none;
+      }
       span {
-        background: transparent url(../images/down.png) no-repeat center center;
+        background: transparent url(../img/down.png) no-repeat center center;
         text-indent: -9000px;
         width: 26px;
         height: 14px;
@@ -45,12 +49,12 @@
         -ms-transition: all 0.2s ease-in-out;
         transition: all 0.2s ease-in-out; }
       &:hover {
-        color: #1693eb;
+        color: darken($typoColor, 30%);
         span {
           opacity: 1;
           right: 10px; } } }
     &.st-open > a {
-      color: #1693eb;
+      color: $typoColor;
       span {
         -webkit-transform: rotate(180deg);
         -moz-transform: rotate(180deg);
