@@ -314,10 +314,14 @@ form{
     padding: 25px 0;
     font-size:35px;
     @include border-radius(8px);
-    background-color: $lightGradient;
-    @include filter-gradient($lightGradient, $darkGradient, vertical);
+    border:2px solid lighten($lightSecondGradient, 5%);
+    @include bebas();
+    @include text-shadow(rgba($darkSecondGradient, 0.2) 1px 1px 0, rgba($darkSecondGradient, 0.2) 2px 2px 0, rgba($darkSecondGradient, 0.2) 3px 3px 0);
+    text-decoration: none;
+    background-color: $lightSecondGradient;
+    @include filter-gradient($lightSecondGradient, $darkSecondGradient, vertical);
     $experimental-support-for-svg: true;
-    @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
+    @include background-image(linear-gradient(top,  $lightSecondGradient 0%,$lightSecondGradient 44%,$darkSecondGradient 100%));
 }
 
 
