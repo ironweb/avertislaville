@@ -31,9 +31,7 @@ module RailsOpen311
     jurisdiction_id = api_config['jurisdiction_id']
     api_key = api_config['apikey']
 
-    wrapper = Open311::ApiWrapper.from_url(url, api_key, jurisdiction_id)
-    wrapper.logger = Rails.logger
-    wrapper
+    Open311::ApiWrapper.from_url(url, api_key, jurisdiction_id)
   end
 
 end
