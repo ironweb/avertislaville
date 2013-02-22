@@ -4,7 +4,7 @@ body{
     font-size: 1em;
     background-color:$bgColor;
     &.controller-home{
-        background: $bgColor url("../img/fondquebec.png") no-repeat -57px 30px fixed;
+        background: $bgColor url("../img/fondquebec.png") no-repeat 0px 30px fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;

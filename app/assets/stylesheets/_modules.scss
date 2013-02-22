@@ -373,31 +373,66 @@ form{
             $experimental-support-for-svg: true;
             @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
             padding: 15px 0;
+            //width: 950px;
     }
     .logo{
-    margin: 0px auto 45px;
+    margin: 0px auto;
     display: block;
     }
+    .callAction {
+    //background: #e4e4e4; 
+     a{
+        background: url("../img/btrequete.png") no-repeat;
+        margin: 0 auto;
+        width: 253px;
+        border: none;
+        text-indent: -999em;
+        height: 99px;
+        @include border-radius(0px);
 
+    }   
+    }
+    .districts{
+        width: 950px;
+        border: none;
+        @include border-radius(0px);
+        background: #e4e4e4 url("../img/fondhome.jpg") no-repeat;
+        height: 209px;
+        margin-bottom: 30px;
+    }
     #zoneHomeMap{
         height: 355px;
-        width: 950px;
-        margin: 30px auto;
+        width: 100%;
+        margin: 0px auto;
         position: relative;
+        background-color: #d3d3d3;
+         //@include filter-gradient(#d3d3d3, #a8a8a8, vertical);
+        // $experimental-support-for-svg: true;
+          @include background-image(linear-gradient(top,  #d3d3d3 0%, #a7a7a7 100%));
     }
     #homeMap{
-        width: 100%;
+        width: 980px;
         height: 100%;
+        margin: 0 auto;
     }
     #mask{
         position: absolute;
         top: 0;
         left: 0;
         height: 355px;
-        width: 950px;
-        background: url('../img/mask2.png') no-repeat;
-        background-size: 100%;
+        width: 980px;
+        background: url('../img/mask.png') no-repeat;
+
+        //background-size: 100%;
         pointer-events:none;
+        z-index: 10;
+        margin: 0 auto;
+    }
+    #maskholder{
+        position: relative;
+        width: 980px;
+        margin: 0 auto;
+        top: -355px;
     }
     
     .contact{
