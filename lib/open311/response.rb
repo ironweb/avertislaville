@@ -9,8 +9,12 @@ module Open311
     attribute :account_id
     attribute :error_message
 
+    def valid?
+      error_message.nil?
+    end
+
     def error?
-      !error_message.nil?
+      !valid?
     end
 
   end

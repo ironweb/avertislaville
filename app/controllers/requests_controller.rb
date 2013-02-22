@@ -11,8 +11,13 @@ class RequestsController < ApplicationController
     if true # TODO : request.valid?
       # TODO : Create db record in transaction
       api_wrapper = RailsOpen311.api_wrapper
-      api_wrapper.send_request(@request)
+      api_response = api_wrapper.send_request(@request)
 
+      if api_response.valid?
+        notice = I18n.t('request.success')
+      else
+        notice = api_response.error_message
+      end
       redirect_to services_path, :notice =>I18n.t('request.success')
     else
       render 'new'
