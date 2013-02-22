@@ -1,3 +1,3 @@
 <% content_for(:back_url, services_path) %>
-<% content_for(:header_title, @request.service.name) %>
+<% content_for(:header_title, service_name(@request.service)) %>
 <%= render 'form' %>
