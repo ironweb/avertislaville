@@ -18,7 +18,7 @@ describe Event do
       end
     end
 
-    it "is requires lonlat" do
+    it "requires lonlat" do
       without_lonlat = Event.new
       without_lonlat.valid?.should be_false
       without_lonlat.errors.should have_key(:lonlat)

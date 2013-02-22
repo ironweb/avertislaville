@@ -15,5 +15,6 @@ fr:
     submit: 'Envoyer'
     success: 'Problème signalé'
     description: 'Description'
+    errors_in_form: 'Corrigez les erreurs dans le formulaire'
   nav:
     back: "Retour"

@@ -8,12 +8,23 @@ module ServicesHelper
 
   def service_name(service)
     config = service_config(service.code)
-    return config['name'] if config.include? 'name' else service.name
+    if config.include? 'name'
+      config['name']
+    else
+      service.name
+    end
   end
 
   def service_css_class(service)
     config = service_config(service.code)
-    return config['css_class']
+    return config['css_class'] if config.include? 'css_class'
+    return service.name.parameterize
+  end
+
+  def service_desc(service)
+    config = service_config(service.code)
+    return config['description'] if config.include? 'description'
+    return service.description
   end
 
 end

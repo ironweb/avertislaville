@@ -1,6 +1,6 @@
 # encoding: UTF-8
 require 'spec_helper'
-require 'open311_helper.rb'
+require 'lib/open311/open311_helper.rb'
 require 'json'
 
 class ResponseStub
