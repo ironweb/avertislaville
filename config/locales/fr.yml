@@ -2,6 +2,8 @@ fr:
   app_title: Avertis la Ville
   home:
     signal: 'Signaler une anomalie'
+  districts:
+    signal: 'Classement des quartiers'
   requests:
     information: 'Information'
     contact: 'Contact'
