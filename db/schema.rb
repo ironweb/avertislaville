@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20130222011634) do
   create_table "areas", :force => true do |t|
     t.string  "name", :limit => 50
     t.decimal "area"
-    t.spatial "geom", :limit => {:srid=>0, :type=>"multi_polygon", :has_z=>true}
+    t.spatial "geom", :limit => {:srid=>0, :type=>"multi_polygon", :has_m=>true, :has_z=>true}
   end
 
   add_index "areas", ["geom"], :name => "areas_geom_idx", :spatial => true
