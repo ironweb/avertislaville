@@ -75,6 +75,22 @@ describe Request do
     end
 
     it "converts question values to send to api_wrapper" do
+      service = FactoryGirl.build(:open311_service)
+      service.code = "1234"
+
+      request = Request.new(service)
+      request.lat = 12.34
+      request.long = 23.45
+      request.attrs_values['value1'] = "param1"
+
+      expected = {
+        'service_code' => "1234",
+        'lat' => 12.34,
+        'long' => 23.45,
+        'attribute[value1]' => "param1",
+      }
+
+      request.to_post_params.should == expected
     end
 
   end

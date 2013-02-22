@@ -23,4 +23,35 @@ FactoryGirl.define do
     values []
     variable false
   end
+
+  factory :open311_request, :class => 'Request' do
+    ignore do
+      service :nil
+    end
+
+    lat 12.34
+    long 56.78
+
+    initialize_with { new(FactoryGirl.build(:open311_service)) }
+  end
+
+  factory :open311_request_full, :class => 'Request' do
+    ignore do
+      service :nil
+    end
+
+    description "desc"
+    lat 12.34
+    long 56.78
+    email "email@test.com"
+    device_id 1
+    account_id 2
+    first_name "firstname"
+    last_name "lastname"
+    phone "55512345678"
+    description "description"
+    media_url "http://url"
+
+    initialize_with { new(FactoryGirl.build(:open311_service)) }
+  end
 end

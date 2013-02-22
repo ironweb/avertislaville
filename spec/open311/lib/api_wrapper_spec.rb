@@ -234,20 +234,16 @@ describe Open311::ApiWrapper do
 
   it "sends a request to the api" do
     resource = PostStub.new(sample_response.to_json)
-    request = Open311::Request.new({
-      :service_code => "1234",
-      :lat => 12.34,
-      :long => 23.45,
-    })
+    request = FactoryGirl.build(:open311_request)
 
     wrapper = Open311::ApiWrapper.new(resource, api_key)
     wrapper.send_request(request)
 
     expected = {
       'api_key' => api_key,
-      'service_code' => "1234",
-      'lat' => 12.34,
-      'long' => 23.45,
+      'service_code' => request.service.code,
+      'lat' => request.lat,
+      'long' => request.long,
     }
 
     resource.post_result.should == expected
@@ -255,27 +251,20 @@ describe Open311::ApiWrapper do
 
   it "sends a request with attributes to the api" do
     resource = PostStub.new(sample_response.to_json)
-    request = Open311::Request.new({
-      :service_code => "1234",
-      :lat => 12.34,
-      :long => 23.45,
-    })
-
-    attributes = {
+    request = FactoryGirl.build(:open311_request)
+    request.attrs_values = {
       '1234-1234-1234-1234' => '2345-2345-2345-2345',
       '3456-3456-3456-3456' => '4567-4567-4567-4567'
     }
-
-    request.attrs = attributes
 
     wrapper = Open311::ApiWrapper.new(resource, api_key)
     wrapper.send_request(request)
 
     expected = {
       'api_key' => api_key,
-      'service_code' => "1234",
-      'lat' => 12.34,
-      'long' => 23.45,
+      'service_code' => request.service.code,
+      'lat' => request.lat,
+      'long' => request.long,
       'attribute[1234-1234-1234-1234]' => '2345-2345-2345-2345',
       'attribute[3456-3456-3456-3456]' => '4567-4567-4567-4567',
     }
@@ -285,12 +274,7 @@ describe Open311::ApiWrapper do
 
   it "returns a response when sending a request" do
     resource = PostStub.new(sample_response.to_json)
-    request = Open311::Request.new({
-      :service_code => "1234",
-      :lat => 12.34,
-      :long => 23.45,
-    })
-
+    request = FactoryGirl.build(:open311_request)
     wrapper = Open311::ApiWrapper.new(resource, api_key)
 
     response = wrapper.send_request(request)
@@ -303,11 +287,7 @@ describe Open311::ApiWrapper do
 
   it "raises an exception when api returns a 400 error" do
     resource = ErrorStub.new(sample_response.to_json)
-    request = Open311::Request.new({
-      :service_code => "1234",
-      :lat => 12.34,
-      :long => 23.45,
-    })
+    request = FactoryGirl.build(:open311_request)
 
     wrapper = Open311::ApiWrapper.new(resource, api_key)
     response = wrapper.send_request(request)

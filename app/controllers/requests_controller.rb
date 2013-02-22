@@ -10,11 +10,8 @@ class RequestsController < ApplicationController
     @request.attributes = params[:request].except("password")
     if true # TODO : request.valid?
       # TODO : Create db record in transaction
-      open311_request = Open311::Request.new(@request.attributes.merge({
-        service_code: service.code,
-      }))
       api_wrapper = RailsOpen311.api_wrapper
-      api_wrapper.send_request(open311_request)
+      api_wrapper.send_request(@request)
 
       redirect_to services_path, :notice =>I18n.t('request.success')
     else

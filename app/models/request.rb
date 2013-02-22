@@ -17,6 +17,21 @@ class Request
   attr_reader :service
   attr_accessor :attrs_values
 
+  POST_KEYS = [
+    :service_code,
+    :description,
+    :lat,
+    :long,
+    :email,
+    :device_id,
+    :account_id,
+    :first_name,
+    :last_name,
+    :phone,
+    :description,
+    :media_url,
+  ]
+
   def initialize(service)
     @attrs_values = ActiveSupport::HashWithIndifferentAccess.new
     @service = service
@@ -48,23 +63,14 @@ class Request
   end
 
   def to_post_params
-    keys = [
-      :service_code,
-      :description,
-      :lat,
-      :long,
-      :email,
-      :device_id,
-      :account_id,
-      :first_name,
-      :last_name,
-      :phone,
-      :description,
-      :media_url,
-    ]
-
-    params = attributes.select { |k,v| !v.nil? and keys.include? k.to_sym }
+    params = attributes.select { |k,v| !v.nil? and POST_KEYS.include? k.to_sym }
     params['service_code'] = @service.code if @service.code
+
+    attrs_values.each do |key, value|
+      param_key = "attribute[#{key}]"
+      params[param_key] = value
+    end
+
     params
   end
 
