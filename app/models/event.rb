@@ -9,6 +9,16 @@ class Event < ActiveRecord::Base
   before_save :set_district
   before_save :set_area
 
+  belongs_to :district
+  belongs_to :area
+
+  def self.from_request(request)
+    event = Event.new(
+      :lonlat => "POINT(#{request.long.to_f} #{request.lat.to_f})",
+      :type_code => request.service.code
+    )
+  end
+
   def lat
     lonlat.try(:y)
   end

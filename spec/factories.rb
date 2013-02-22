@@ -54,4 +54,12 @@ FactoryGirl.define do
 
     initialize_with { new(FactoryGirl.build(:open311_service)) }
   end
+
+  factory :open311_response, :class => 'Open311::Response' do
+    token "53020772-c676-e211-9483-005056a613ac"
+    service_request_id nil
+    service_notice nil
+    account_id nil
+    error_message nil
+  end
 end

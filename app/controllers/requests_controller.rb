@@ -13,11 +13,17 @@ class RequestsController < ApplicationController
       api_wrapper = RailsOpen311.api_wrapper
       api_response = api_wrapper.send_request(@request)
 
-      if api_response.valid?
-        notice = I18n.t('request.success')
-      else
-        notice = api_response.error_message
+      unless api_response.valid?
+        redirect_to services_path, :notice => api_response.error_message
+        return
       end
+
+      event = create_event(api_response)
+      unless event.save
+        redirect_to services_path, :notice => I18n.t('request.error')
+        return
+      end
+
       redirect_to services_path, :notice =>I18n.t('request.success')
     else
       render 'new'
@@ -35,6 +41,12 @@ class RequestsController < ApplicationController
   def service
     @service ||= RailsOpen311.filtered_services.find do |service|
       service.code == params[:service]
+    end
+  end
+
+  def create_event(api_response)
+    Event.from_request(@request).tap do |event|
+      event.token = api_response.token
     end
   end
 end

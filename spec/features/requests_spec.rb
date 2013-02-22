@@ -77,7 +77,9 @@ describe "RequestsController", :type => :feature do
         RailsOpen311.stub(:api_wrapper) do
           wrapper = Open311::ApiWrapper.from_url('http://dummy.dev', 'key')
           double('Open311::ApiWrapper').tap do |test_double|
-            test_double.should_receive(:send_request).once()
+            test_double.should_receive(:send_request).once() do
+              FactoryGirl.build(:open311_response)
+            end
           end
         end
 
@@ -86,6 +88,36 @@ describe "RequestsController", :type => :feature do
         click_button "request_submit"
         current_path.should == services_path
         page.should have_selector('.flash-notice')
+      end
+
+      it "submits and create an event" do
+        stub_service [
+          FactoryGirl.build(:open311_attribute, :code => "grapher", :datatype => "string")
+        ]
+
+        RailsOpen311.stub(:api_wrapper) do
+          wrapper = Open311::ApiWrapper.from_url('http://dummy.dev', 'key')
+          double('Open311::ApiWrapper').tap do |test_double|
+            test_double.should_receive(:send_request).once() do
+              FactoryGirl.build(:open311_response)
+            end
+          end
+        end
+
+        service_code = FactoryGirl.build(:open311_service).code
+        filtered_return = [double('Service').tap do |d|
+          d.stub(:code).and_return(service_code)
+          d.stub(:name).and_return("name")
+        end]
+        RailsOpen311.stub(:filtered_services).and_return(filtered_return)
+
+        visit request_path('one_service')
+        fill_in "request_grapher", :with => 'Tony Hawks'
+        click_button "request_submit"
+        current_path.should == services_path
+        page.should have_selector('.flash-notice')
+
+        Event.all.count.should == 1
       end
 
     end
