@@ -8,6 +8,8 @@ class Request
   attribute :last_name
   attribute :phone
   attribute :password
+  attribute :lat
+  attribute :lon
 
   attr_reader :service
   attr_writer :attrs_values

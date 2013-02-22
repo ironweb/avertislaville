@@ -47,5 +47,7 @@
   <fieldset id="register">
     <%= form.input :password, :placeholder => t('requests.password') %>
   </fieldset>
+  <%= form.input :lat, as: :hidden %>
+  <%= form.input :lon, as: :hidden %>
   <%= form.submit t('requests.submit'), :id => 'request_submit', :class => 'navBar' %>
 <% end %>
