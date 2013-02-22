@@ -11,9 +11,7 @@
 </head>
 <body>
   <!--Scripts -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <%= javascript_include_tag "application" %>
+  
 
   <% [:alert, :error, :notice].each do |key| %>
     <% if flash[key] %>
@@ -22,5 +20,8 @@
   <% end %>
 
   <%= yield %>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= javascript_include_tag "application" %>
 </body>
 </html>
