@@ -21,4 +21,10 @@ module ServicesHelper
     return service.name.parameterize
   end
 
+  def service_desc(service)
+    config = service_config(service.code)
+    return config['description'] if config.include? 'description'
+    return service.description
+  end
+
 end

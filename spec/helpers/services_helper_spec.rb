@@ -12,7 +12,7 @@ require 'spec_helper'
 # end
 describe ServicesHelper do
 
-  service = Struct.new(:code, :name).new("servicecode", "Service Name")
+  service = Struct.new(:code, :name, :description).new("servicecode", "Service Name", "description")
 
   describe "service name" do
 
@@ -62,6 +62,30 @@ describe ServicesHelper do
       css_class.should == 'cssclass'
     end
 
+  end
+
+  describe "service description" do
+
+    it "generates a description if there isn't any metadata" do
+      config = {'services' => []}
+      RailsOpen311.stub(:load_config).and_return(config)
+
+      desc = service_desc(service)
+      desc.should == service.description
+    end
+
+    it "generates a description from metadata" do
+      config = {
+        'services' => [{
+          'service_code' => "servicecode",
+          'description' => 'huge description',
+        }]
+      }
+      RailsOpen311.stub(:load_config).and_return(config)
+
+      desc = service_desc(service)
+      desc.should == 'huge description'
+    end
   end
 
 end
