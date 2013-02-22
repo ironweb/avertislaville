@@ -35,7 +35,7 @@ class Event < ActiveRecord::Base
   end
 
   def set_area
-    self.district = Area.contains_point(lat, lon)
+    self.area = Area.contains_point(lat, lon)
   end
 
 end
