@@ -29,3 +29,5 @@ public/stylesheets/cache
 # Vendor Cache
 vendor/cache
 vendor/bundle
+
+coverage
