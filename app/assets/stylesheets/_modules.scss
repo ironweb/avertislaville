@@ -34,6 +34,9 @@ header{
         float:left;
         width:40%;
         text-align: center;
+        @media screen and (min-width: $break-large) {
+            background: url(../img/logo.png) no-repeat;
+        }
     }
     @media screen and (min-width: $break-large) {
         border-bottom:1px solid $typoColor;
@@ -257,6 +260,7 @@ form{
         background-image: url("../img/noisetexture.png") ;
         text-align: center;
         background-color: #ccc;
+        background-position: center bottom;
         @media screen and (min-width: $break-large) {
             padding:50px 0;
         }
