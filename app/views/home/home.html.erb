@@ -1,5 +1,5 @@
-<h1><%= t('app_title') %></h1>
-<%= link_to(t('home.signal'), services_path) %>
+<h1 class="logo"><span class="visuallyhidden"><%= t('app_title') %></span></h1>
+<div class="callAction"><%= link_to(t('home.signal'), services_path) %></div>
 <script type="text/javascript">
   var eventsCoords = <%= @events.html_safe %>;
 </script>

@@ -205,7 +205,6 @@ form{
         color: #ffffff;
         font-size: 22px;
         text-decoration: none;
-        
     }
     .nid-de-poul{
         background-color: #2d2d2d;
@@ -231,6 +230,27 @@ form{
         }
     }
 }
-
+// HOME
+.logo{
+    background: url("../img/logo.png") no-repeat;
+    background-size: 270px 81px;
+    width: 270px;
+    height: 81px;
+    margin: 45px auto;
+}
+.callAction a{
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    color:#ffffff;
+    text-align: center;
+    padding: 25px 0;
+    font-size:35px;
+    @include border-radius(8px);
+    background-color: $lightGradient;
+    @include filter-gradient($lightGradient, $darkGradient, vertical);
+    $experimental-support-for-svg: true;
+    @include background-image(linear-gradient(top,  $lightGradient 0%,#60abf8 44%,$darkGradient 100%));
+}
 
 /*****		END OF MODULES		*****/
