@@ -37,4 +37,8 @@ module RailsOpen311
     Open311::ApiWrapper.from_url(url, api_key, jurisdiction_id)
   end
 
+  def self.points_for_area(area)
+    load_config['scoring'][area] || 1
+  end
+
 end

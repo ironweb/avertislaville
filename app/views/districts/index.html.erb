@@ -3,13 +3,16 @@
         <ul>
           <% @districts.each do |district| %>
             <li>
-              <%= link_to (district.name + '<span class="st-arrow">Open or Close</span>').html_safe, districts_path(district) %>
+            <%= link_to (district.name + '<span class="st-arrow">Open or Close</span>').html_safe, districts_path(district) %>
+            <% services = district.all_services %>
+            <span><%= total_district_score(district, services) %></span>
               <div class="st-content">
                 <ul>
-                    <li class="nid">Nid de poule <span>XX</span></li>
-                    <li class="lampadaire">Lampadaire <span>XX</span></li>
-                    <li class="neige">Rue mal déneigée <span>XX</span></li>
-                    <li class="trottoir">Troittoire à réparer <span>XX</span></li>
+                  <% services.each do |service| %>
+                    <li class="<%= service_css_class(service) %>"><%= service_name(service) %>
+                      <span><%= service_score(district, service) %></span>
+                    </li>
+                  <% end %>
                 </ul>
             </div>
             </li>

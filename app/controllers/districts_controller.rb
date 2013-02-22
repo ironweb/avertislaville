@@ -4,4 +4,8 @@ class DistrictsController < ApplicationController
     @districts = District.all
   end
 
+  def scores
+    @districts = District.all
+  end
+
 end

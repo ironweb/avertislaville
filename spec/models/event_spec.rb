@@ -56,4 +56,8 @@ describe Event do
 
   end
 
+  describe "#points_for_area" do
+
+  end
+
 end
