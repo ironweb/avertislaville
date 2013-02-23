@@ -23,7 +23,7 @@ describe ServicesHelper do
           'name' => "Trottoir a reparer",
         }]
       }
-      RailsOpen311.stub(:load_config).and_return(config)
+      Easy311::Rails.stub(:load_config).and_return(config)
 
       name = service_name(service)
       name.should == "Trottoir a reparer"
@@ -31,7 +31,7 @@ describe ServicesHelper do
 
     it "uses service name when no metadata" do
       config = {'services' => []}
-      RailsOpen311.stub(:load_config).and_return(config)
+      Easy311::Rails.stub(:load_config).and_return(config)
 
       name = service_name(service)
       name.should == service.name
@@ -43,7 +43,7 @@ describe ServicesHelper do
 
     it "generates a css class if there isn't any in metadata" do
       config = {'services' => []}
-      RailsOpen311.stub(:load_config).and_return(config)
+      Easy311::Rails.stub(:load_config).and_return(config)
 
       css_class = service_css_class(service)
       css_class.should == "service-name"
@@ -56,7 +56,7 @@ describe ServicesHelper do
           'css_class' => 'cssclass',
         }]
       }
-      RailsOpen311.stub(:load_config).and_return(config)
+      Easy311::Rails.stub(:load_config).and_return(config)
 
       css_class = service_css_class(service)
       css_class.should == 'cssclass'
@@ -68,7 +68,7 @@ describe ServicesHelper do
 
     it "generates a description if there isn't any metadata" do
       config = {'services' => []}
-      RailsOpen311.stub(:load_config).and_return(config)
+      Easy311::Rails.stub(:load_config).and_return(config)
 
       desc = service_desc(service)
       desc.should == service.description
@@ -81,7 +81,7 @@ describe ServicesHelper do
           'description' => 'huge description',
         }]
       }
-      RailsOpen311.stub(:load_config).and_return(config)
+      Easy311::Rails.stub(:load_config).and_return(config)
 
       desc = service_desc(service)
       desc.should == 'huge description'

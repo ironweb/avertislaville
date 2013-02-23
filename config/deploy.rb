@@ -58,7 +58,7 @@ namespace :deploy do
   task :link_configs do
     run "ln -sf #{File.join(shared_path, 'config', 'database.yml')} #{File.join(latest_release, 'config')} " +
       "&& ln -sf #{File.join(shared_path, 'config', 'unicorn.rb')} #{File.join(latest_release, 'config')} " +
-      "&& ln -sf #{File.join(shared_path, 'config', 'open311.yml')} #{File.join(latest_release, 'config')}"
+      "&& ln -sf #{File.join(shared_path, 'config', 'easy311.yml')} #{File.join(latest_release, 'config')}"
   end
 end
 

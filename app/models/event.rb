@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   validates :type_code, :presence => true, :inclusion => { :in =>
-    proc { RailsOpen311.filtered_services.map(&:code) } }
+    proc { Easy311::Rails.filtered_services.map(&:code) } }
 
   validates :lonlat, presence: true
 

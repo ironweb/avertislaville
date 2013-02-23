@@ -38,6 +38,8 @@ gem 'active_attr'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 
+gem 'easy311', '0.0.1'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

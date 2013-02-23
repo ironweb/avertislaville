@@ -1,11 +1,11 @@
 describe Event do
   describe "#validates" do
     describe "application key" do
-      after(:each) { RailsOpen311.unstub(:filtered_services) }
+      after(:each) { Easy311::Rails.unstub(:filtered_services) }
 
       it "is required and valid only if code is in config" do
         filtered_return = [double('Service').tap { |d| d.stub(:code).and_return('CODE123') }]
-        RailsOpen311.stub(:filtered_services).and_return(filtered_return)
+        Easy311::Rails.stub(:filtered_services).and_return(filtered_return)
 
         Event.new.valid?.should be_false
 
@@ -35,11 +35,11 @@ describe Event do
 
     context "minimal request" do
 
-      request = FactoryGirl.build(:open311_request)
+      request = FactoryGirl.build(:easy311_request)
 
       subject do
         filtered_return = [double('Service').tap { |d| d.stub(:code).and_return(request.service.code) }]
-        RailsOpen311.stub(:filtered_services).and_return(filtered_return)
+        Easy311::Rails.stub(:filtered_services).and_return(filtered_return)
         event = Event.from_request(request)
         event.save
         event

@@ -2,15 +2,15 @@ class RequestsController < ApplicationController
   before_filter :validate_service, :only => [:new, :create]
 
   def new
-    @request = Open311::Request.new(service)
+    @request = Easy311::Request.new(service)
   end
 
   def create
-    @request = Open311::Request.new(service)
+    @request = Easy311::Request.new(service)
     @request.attributes = params[:request].except("password")
 
     if @request.valid?
-      api_wrapper = RailsOpen311.api_wrapper
+      api_wrapper = Easy311::Rails.api_wrapper
       api_response = api_wrapper.send_request(@request)
 
       if api_response.invalid?
@@ -39,7 +39,7 @@ class RequestsController < ApplicationController
   end
 
   def service
-    @service ||= RailsOpen311.filtered_services.find do |service|
+    @service ||= Easy311::Rails.filtered_services.find do |service|
       service.code == params[:service]
     end
   end

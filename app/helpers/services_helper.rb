@@ -1,7 +1,7 @@
 module ServicesHelper
 
   def service_config(code)
-    RailsOpen311.load_config['services'].select do |section|
+    Easy311::Rails.load_config['services'].select do |section|
       section['service_code'] == code
     end.first || {}
   end
@@ -31,7 +31,7 @@ module ServicesHelper
     html = form.input(attr.code.to_sym,
       :label => attr.description,
       :placeholder => attr.description,
-      :as => "open311_#{attr.datatype}",
+      :as => "easy311_#{attr.datatype}",
       :collection => attr.values,
       :label_method => lambda { |v| v['name'] },
       :value_method => lambda { |v| v['key'] },
@@ -46,7 +46,7 @@ module ServicesHelper
   end
 
   def prefill_date_input(code)
-    RailsOpen311.load_config['date_prefill'].include? code
+    Easy311::Rails.load_config['date_prefill'].include? code
   end
 
 end

@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
   def index
-    @services = RailsOpen311.filtered_services
+    @services = Easy311::Rails.filtered_services
   end
 end

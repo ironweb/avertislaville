@@ -1,1 +1,1 @@
-RailsOpen311.load_all_services!
+Easy311::Rails.load_all_services!
